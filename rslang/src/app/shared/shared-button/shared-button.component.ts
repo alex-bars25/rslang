@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-shared-button',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shared-button.component.scss']
 })
 export class SharedButtonComponent implements OnInit {
+
+  @Input()
+  buttonTitle = 'New Button'
 
   constructor() { }
 
