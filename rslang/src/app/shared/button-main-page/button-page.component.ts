@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {LinksServiceService} from "../../services/links-service.service";
 
 @Component({
   selector: 'app-button-main-page',
@@ -17,13 +16,11 @@ export class ButtonPageComponent implements OnInit {
   @Input()
   public disabled = true;
 
-  public imgUrl: any;
+  public imgUrl = 'https://picsum.photos/70/70'
 
-
-  constructor(private linksService: LinksServiceService) { }
+  constructor() { }
 
   ngOnInit(): void {
-     this.imgUrl = this.linksService.imageUrl;
   }
 
 }
