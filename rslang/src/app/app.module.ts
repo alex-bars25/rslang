@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonPageComponent } from './shared/button-main-page/button-page.component';
 import {FormsModule} from "@angular/forms";
+import {HomepageModule} from "./pages/homepage/homepage.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {FormsModule} from "@angular/forms";
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        HomepageModule
     ],
   providers: [],
   bootstrap: [AppComponent]
