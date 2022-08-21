@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomepageComponent } from './homepage.component';
 import { LogoModule } from './components/logo/logo.module';
+import {CardBlockModule} from "../../shared/card-block/card-block.module";
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { LogoModule } from './components/logo/logo.module';
   ],
   imports: [
     CommonModule,
-    LogoModule
+    LogoModule,
+    CardBlockModule
   ],
   exports: [
     HomepageComponent
