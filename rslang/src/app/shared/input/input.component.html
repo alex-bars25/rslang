@@ -1,0 +1,7 @@
+<input
+  class="input"
+  [placeholder]="placeholder"
+  [type]="type"
+  [id]="id"
+  (keyup)="editValue.emit(input.value)" #input
+  required>
