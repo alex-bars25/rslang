@@ -7,8 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class BtnActionComponent implements OnInit {
 
-  @Input()  public buttonTitle = 'XXXXXXXXX';
-  @Input() public logoBook =  "./assets/book-elec.svg"
+  @Input()  public buttonTitle: string;
+  @Input() public logoBook: string;
 
   constructor() { }
 
