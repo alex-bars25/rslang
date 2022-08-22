@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomepageComponent } from './homepage.component';
 import { LogoModule } from './components/logo/logo.module';
-
+import { WelcomeBlockModule } from './components/welcome-block/welcome-block.module';
 
 @NgModule({
   declarations: [
@@ -11,6 +11,7 @@ import { LogoModule } from './components/logo/logo.module';
   imports: [
     CommonModule,
     LogoModule,
+    WelcomeBlockModule
   ],
   exports: [
     HomepageComponent
