@@ -4,6 +4,7 @@ import { HomepageComponent } from './homepage.component';
 import { LogoModule } from './components/logo/logo.module';
 import { DescriptionModule } from './components/description/description.module';
 import { WelcomeBlockModule } from './components/welcome-block/welcome-block.module';
+import {CardBlockModule} from "../../shared/card-block/card-block.module";
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { WelcomeBlockModule } from './components/welcome-block/welcome-block.mod
     CommonModule,
     LogoModule,
     WelcomeBlockModule,
-    DescriptionModule
+    DescriptionModule,
+    CardBlockModule
   ],
   exports: [
     HomepageComponent
