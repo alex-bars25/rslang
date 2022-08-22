@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomepageComponent } from './homepage.component';
 import { LogoModule } from './components/logo/logo.module';
-
+import { DescriptionModule } from './components/description/description.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,8 @@ import { LogoModule } from './components/logo/logo.module';
   ],
   imports: [
     CommonModule,
-    LogoModule
+    LogoModule,
+    DescriptionModule
   ],
   exports: [
     HomepageComponent
