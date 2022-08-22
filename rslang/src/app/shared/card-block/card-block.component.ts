@@ -10,6 +10,9 @@ export class CardBlockComponent implements OnInit {
   @Input() public titleCard: string;
   @Input() public currentImage: string;
 
+  logoImageBtn: string;
+
+
   constructor() { }
 
   ngOnInit(): void {

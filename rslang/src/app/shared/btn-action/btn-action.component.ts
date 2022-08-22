@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BtnActionComponent implements OnInit {
 
   @Input()  public buttonTitle: string;
-  @Input() public logoBook: string;
+  @Input() public logo: string;
 
   constructor() { }
 
