@@ -6,7 +6,7 @@ import { WelcomeBlockModule } from './components/welcome-block/welcome-block.mod
 
 @NgModule({
   declarations: [
-    HomepageComponent
+    HomepageComponent,
   ],
   imports: [
     CommonModule,
