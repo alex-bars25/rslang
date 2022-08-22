@@ -6,11 +6,11 @@ import { LogoModule } from './components/logo/logo.module';
 
 @NgModule({
   declarations: [
-    HomepageComponent
+    HomepageComponent,
   ],
   imports: [
     CommonModule,
-    LogoModule
+    LogoModule,
   ],
   exports: [
     HomepageComponent
