@@ -1,26 +1,20 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-button-main-page',
   templateUrl: './button-page.component.html',
   styleUrls: ['./button-page.component.scss']
 })
-export class ButtonPageComponent implements OnInit {
+export class ButtonPageComponent {
 
   @Input()
-  public buttonTitle = 'New Button';
+  public buttonTitle: string;
 
   @Input()
   public color: string;
 
   @Input()
-  public disabled = true;
-
-  public imgUrl = 'https://picsum.photos/70/70'
+  public imgUrl: string;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
