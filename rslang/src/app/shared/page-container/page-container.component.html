@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <h1 class="title">{{ title }}</h1>
+  <h1 *ngIf="title" class="title">{{ title }}</h1>
   <div class="container">
     <ng-content></ng-content>
   </div>
