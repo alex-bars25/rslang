@@ -1,0 +1,80 @@
+.games-block {
+  max-width: 100%;
+  background-color: rgba(255, 255, 255, 0.7568627451);
+  border-radius: 0.3rem;
+  padding: 1rem;
+
+  h2 {
+    text-align: center;
+    color: rgb(56, 80, 110);
+    vertical-align: middle;
+    font-size: 1.6rem;
+  }
+  .tittle {
+    img {
+      margin-right: 0.3rem;
+    }
+  }
+}
+
+.game-blocks {
+  margin: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+app-card-block {
+  display: flex;
+}
+
+.icon {
+  height: 25px;
+}
+
+.logo-img {
+  width: auto;
+  height: 120px;
+  border-radius: 20px;
+}
+
+.tittle{
+  display: flex;
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+
+@media (max-width: 1280px) {
+  app-card-block {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .game-blocks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .first-block {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .game-blocks {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 550px) {
+  app-card-block {
+    width: 15rem;
+  }
+  .games-block::ng-deep {
+    button {
+      width: 10rem;
+    }
+  }
+}
