@@ -9,6 +9,7 @@ import { CardBlockModule } from "../../shared/card-block/card-block.module";
 import { PageContainerModule } from 'src/app/shared/page-container/page-container.module';
 import {GamesBlockModule} from "./components/games-block/games-block.module";
 import {EducationBlockModule} from "./components/education-block/education-block.module";
+import {FooterBlockModule} from "./components/footer-block/footer-block.module";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {EducationBlockModule} from "./components/education-block/education-block
     CardBlockModule,
     GamesBlockModule,
     CardBlockModule,
-    EducationBlockModule
+    EducationBlockModule,
+    FooterBlockModule
   ],
   exports: [
     HomepageComponent
