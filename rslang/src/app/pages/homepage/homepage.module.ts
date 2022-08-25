@@ -8,6 +8,7 @@ import { AboutBlockModule } from './components/about-block/about-block.module';
 import { CardBlockModule } from "../../shared/card-block/card-block.module";
 import { PageContainerModule } from 'src/app/shared/page-container/page-container.module';
 import {GamesBlockModule} from "./components/games-block/games-block.module";
+import {EducationBlockModule} from "./components/education-block/education-block.module";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import {GamesBlockModule} from "./components/games-block/games-block.module";
     AboutBlockModule,
     CardBlockModule,
     GamesBlockModule
+    CardBlockModule,
+    EducationBlockModule
   ],
   exports: [
     HomepageComponent
