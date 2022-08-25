@@ -22,7 +22,7 @@ import {EducationBlockModule} from "./components/education-block/education-block
     DescriptionModule,
     AboutBlockModule,
     CardBlockModule,
-    GamesBlockModule
+    GamesBlockModule,
     CardBlockModule,
     EducationBlockModule
   ],
