@@ -7,9 +7,11 @@ import { WelcomeBlockModule } from './components/welcome-block/welcome-block.mod
 import { AboutBlockModule } from './components/about-block/about-block.module';
 import { CardBlockModule } from "../../shared/card-block/card-block.module";
 import { PageContainerModule } from 'src/app/shared/page-container/page-container.module';
+import { StatisticBlockModule } from './components/statistic-block/statistic-block.module';
 import {GamesBlockModule} from "./components/games-block/games-block.module";
 import {EducationBlockModule} from "./components/education-block/education-block.module";
 import {FooterBlockModule} from "./components/footer-block/footer-block.module";
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import {FooterBlockModule} from "./components/footer-block/footer-block.module";
     DescriptionModule,
     AboutBlockModule,
     CardBlockModule,
+    StatisticBlockModule,
     GamesBlockModule,
     CardBlockModule,
     EducationBlockModule,
