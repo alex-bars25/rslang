@@ -8,6 +8,9 @@ import { AboutBlockModule } from './components/about-block/about-block.module';
 import { CardBlockModule } from "../../shared/card-block/card-block.module";
 import { PageContainerModule } from 'src/app/shared/page-container/page-container.module';
 import { StatisticBlockModule } from './components/statistic-block/statistic-block.module';
+import {GamesBlockModule} from "./components/games-block/games-block.module";
+import {EducationBlockModule} from "./components/education-block/education-block.module";
+
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { StatisticBlockModule } from './components/statistic-block/statistic-blo
     DescriptionModule,
     AboutBlockModule,
     CardBlockModule,
-    StatisticBlockModule
+    StatisticBlockModule,
+    GamesBlockModule,
+    CardBlockModule,
+    EducationBlockModule
   ],
   exports: [
     HomepageComponent

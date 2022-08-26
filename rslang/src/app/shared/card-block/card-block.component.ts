@@ -9,6 +9,10 @@ export class CardBlockComponent implements OnInit {
 
   @Input() public titleCard: string;
   @Input() public currentImage: string;
+  @Input() public cardIssue:string;
+
+  @Input() public titleFromBlock: string;
+  @Input() public imgFromBlock: string;
 
   constructor() { }
 
