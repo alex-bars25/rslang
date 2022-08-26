@@ -10,6 +10,7 @@ import { PageContainerModule } from 'src/app/shared/page-container/page-containe
 import { StatisticBlockModule } from './components/statistic-block/statistic-block.module';
 import {GamesBlockModule} from "./components/games-block/games-block.module";
 import {EducationBlockModule} from "./components/education-block/education-block.module";
+import {FooterBlockModule} from "./components/footer-block/footer-block.module";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {EducationBlockModule} from "./components/education-block/education-block
     StatisticBlockModule,
     GamesBlockModule,
     CardBlockModule,
-    EducationBlockModule
+    EducationBlockModule,
+    FooterBlockModule
   ],
   exports: [
     HomepageComponent
