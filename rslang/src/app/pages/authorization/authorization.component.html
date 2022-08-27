@@ -1,0 +1,7 @@
+<app-page-container [title]="title">
+  <app-registration *ngIf="!isRegistered"></app-registration>
+  <app-login *ngIf="isRegistered"></app-login>
+  <div class="registered">
+    <p>{{ text }} <span class="link" (click)="switchForm()">{{ link }}</span></p>
+  </div>
+</app-page-container>

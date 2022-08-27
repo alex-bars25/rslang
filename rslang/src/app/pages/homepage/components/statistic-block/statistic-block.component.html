@@ -1,0 +1,30 @@
+<div class="static-wrapper">
+  <div class="tittle">
+    <img class="icon" src="../../../../../assets/stat-icon.png" alt="icon">
+    <h3>Статистика</h3>
+  </div>
+  <div class="cards">
+    <app-statistic-card
+    class='card'
+    [tittle]='titleToday'
+    [iconLink]='iconLinkToday'
+    [textTitle]='textTittleToday'
+    [value]='valueWordsToday'
+    >
+    </app-statistic-card>
+    <app-statistic-card
+    class='card'
+    [tittle]='titleGeneral'
+    [iconLink]='iconLinkGeneral'
+    [textTitle]='textTittleGeneral'
+    [value]='valueWordsGeneral'
+    [subText]='subText'
+    >
+    </app-statistic-card>
+  </div>
+  <app-button-main-page
+    class='block-button'
+    [color]='buttonColor'
+    [buttonTitle]='buttonTitle'
+    ></app-button-main-page>
+</div>

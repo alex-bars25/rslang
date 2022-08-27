@@ -1,0 +1,65 @@
+.static-wrapper {
+  background-color: #ffffffc1;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+h4 {
+  color: rgb(56, 80, 110);
+}
+
+h3 {
+  color: rgb(56, 80, 110);
+  vertical-align: middle;
+}
+
+.icon {
+  height: 22px;
+}
+
+.tittle{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 7px;
+}
+
+.block-button{
+  height: 30px;
+  width: 130px;
+  margin-top: 7px;
+}
+
+.block-button::ng-deep {
+  .button {
+    font-size: 1rem;
+    color: rgb(56, 80, 110);
+  }
+
+  .button:hover {
+    background-color: #d2d5d6 !important;
+  }
+
+}
+
+.cards{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.card {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+
+  .cards{
+    flex-direction: column;
+  }
+
+}
+
+
