@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from "@angular/forms";
 import { HomepageModule } from "./pages/homepage/homepage.module";
 import { AuthorizationModule } from './pages/authorization/authorization.module';
+import {AudioGameModule} from "./pages/audio-game/audio-game.module";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AuthorizationModule } from './pages/authorization/authorization.module'
       AppRoutingModule,
       FormsModule,
       HomepageModule,
-      AuthorizationModule
+      AuthorizationModule,
+      AudioGameModule
     ],
   providers: [],
   bootstrap: [AppComponent]
