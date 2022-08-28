@@ -1,6 +1,6 @@
 <app-page-container>
-  <header>
-    <!-- 1.header-->
+  <header class="wrapper">
+    <app-header></app-header>
   </header>
   <main>
     <div class="main-wrapper">
@@ -13,13 +13,13 @@
       <hr class='line'>
       <app-games-block></app-games-block>
       <hr class='line'>
-      <!--7. statistic-block-->
+      <app-statistic-block></app-statistic-block>
       <hr class='line'>
-      <app-about-block></app-about-block>
+      <app-about-block id='about'></app-about-block>
     </div>
   </main>
-  <footer>
-      <!-- 9.footer-->
+  <footer class="wrapper">
+    <app-footer-block></app-footer-block>
   </footer>
 </app-page-container>
 

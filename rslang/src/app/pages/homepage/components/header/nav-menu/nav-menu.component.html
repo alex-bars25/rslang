@@ -1,0 +1,23 @@
+<div class="nav-wrapper">
+  <nav class="navigation">
+    <ul class="nav-list">
+      <li class="nav-item"><a href="home" class="nav-link">Главная</a></li>
+      <li class="nav-item"><a href="home" class="nav-link">Учебник</a></li>
+      <li class="nav-item"><a href="home" class="nav-link">Словарь</a></li>
+      <li class="nav-item">
+        <select class="select-nav">
+          <option value=""> <p class="option-main">Игры</p></option>
+          <option class="option-nav"><a href="#" class="nav-link">Аудиовызов</a> </option>
+          <option class="option-nav"><a href="#" class="nav-link">Спринт</a></option>
+        </select>
+      </li>
+      <li class="nav-item"><a href="home" class="nav-link">Статистика</a></li>
+      <li class="nav-item"><a href="javascript:window.scrollTo(0,document.body.scrollHeight)" class="nav-link">О команде</a></li>
+    </ul>
+  </nav>
+  <app-button-main-page
+  class='block-button'
+  [color]='buttonColor'
+  [buttonTitle]='buttonTitle'
+  ></app-button-main-page>
+</div>

@@ -9,7 +9,7 @@ import { AuthorizationModule } from './pages/authorization/authorization.module'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
     imports: [
       BrowserModule,
