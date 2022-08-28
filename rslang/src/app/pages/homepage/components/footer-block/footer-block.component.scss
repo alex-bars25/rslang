@@ -1,14 +1,19 @@
 .footer {
   background-color: #2c3e50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .wrapper-footer {
-    padding: 0.5rem 2rem;
+    width: 1100px;
+    padding: 0.5rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: white;
 
     .rs-logo > img {
-      width: 9rem;
+      width: 8rem;
       filter: invert(20%) sepia(5%) saturate(38%) hue-rotate(7deg) brightness(32%)
       contrast(87%);
     }
@@ -30,7 +35,7 @@
       }
 
       a {
-        color: #656262;
+        color: white;
         text-decoration: none;
       }
       .link-m {
@@ -55,7 +60,84 @@
     cursor: pointer;
 
     a:hover {
-      color: #fff;
+      color: #3bda8b;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .wrapper-footer {
+      width: 900px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .wrapper-footer {
+      width: 700px;
+
+      .rs-logo > img {
+        width: 6rem;
+      }
+
+      .footer-developers .git-logo{
+        height: 30px;
+        margin-left: .3rem;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .wrapper-footer {
+      width: 550px;
+
+      .footer-developers{
+        .git-logo{
+          height: 40px;
+          margin-left: 0;
+        }
+
+        a {
+          font-size: 0;
+        }
+        .foot-item {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 580px) {
+    .wrapper-footer {
+      padding: 0 15px;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .wrapper-footer {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .wrapper-footer {
+
+      .footer-year{
+        font-size: 0.75rem;
+      }
+
+      .rs-logo > img {
+        width: 4rem;
+      }
+
+      .footer-developers{
+        .git-logo{
+          height: 25px;
+          margin-left: 0;
+        }
+
+        .foot-item {
+          padding: 0.5rem;
+        }
+      }
     }
   }
 }

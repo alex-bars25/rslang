@@ -11,7 +11,7 @@ import { StatisticBlockModule } from './components/statistic-block/statistic-blo
 import {GamesBlockModule} from "./components/games-block/games-block.module";
 import {EducationBlockModule} from "./components/education-block/education-block.module";
 import {FooterBlockModule} from "./components/footer-block/footer-block.module";
-
+import {HeaderModule} from "./components/header/header.module";
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import {FooterBlockModule} from "./components/footer-block/footer-block.module";
     GamesBlockModule,
     CardBlockModule,
     EducationBlockModule,
-    FooterBlockModule
+    FooterBlockModule,
+    HeaderModule
   ],
   exports: [
     HomepageComponent
