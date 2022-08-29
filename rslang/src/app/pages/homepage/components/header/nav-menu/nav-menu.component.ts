@@ -20,6 +20,10 @@ export class NavMenuComponent implements OnInit {
     this.router.navigateByUrl("/textbook");
   }
 
+  goToLoginPage() {
+    this.router.navigateByUrl("/authorization");
+  }
+
   ngOnInit(): void {
   }
 
