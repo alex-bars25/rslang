@@ -61,3 +61,16 @@
 .section-btn:active {
   background-color: rgb(168, 169, 170);
 }
+
+@media (max-width: 767px) {
+  .nav-wrapper{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sections{
+    order: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

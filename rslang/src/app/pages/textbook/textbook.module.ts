@@ -5,6 +5,7 @@ import {HeaderModule} from "../homepage/components/header/header.module";
 import {FooterBlockModule} from "../homepage/components/footer-block/footer-block.module";
 import { PageContainerModule } from '../../shared/page-container/page-container.module';
 import { TextbookNavModule } from './components/textbook-nav/textbook-nav.module';
+import { WordBlockModule } from './components//word-block/word-block.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TextbookNavModule } from './components/textbook-nav/textbook-nav.module
     HeaderModule,
     FooterBlockModule,
     PageContainerModule,
-    TextbookNavModule
+    TextbookNavModule,
+    WordBlockModule
   ],
   exports: [
     TextbookComponent
