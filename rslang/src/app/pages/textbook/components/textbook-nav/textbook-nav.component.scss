@@ -55,11 +55,15 @@
   width: 110px;
   border-radius: 20px;
   background-color: rgb(213, 224, 251);
-  box-shadow: inset 0 0 5px 2px rgb(111, 111, 109);
+  box-shadow: 2px 2px 3px 2px rgb(111, 111, 109);
 }
 
 .section-btn:active {
   background-color: rgb(168, 169, 170);
+}
+
+.game:active {
+  box-shadow: none;
 }
 
 @media (max-width: 767px) {

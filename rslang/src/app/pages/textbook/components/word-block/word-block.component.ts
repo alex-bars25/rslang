@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IWord } from '../../../../../types/index';
 
 @Component({
   selector: 'app-word-block',
@@ -7,30 +8,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WordBlockComponent implements OnInit {
 
+  @Input() wordInstance!: IWord ;
+  //@Input()  updateWordsList!:() => void;
+
   audioLogo: string = "./assets/volume_Icon.svg";
   audio: HTMLAudioElement = new Audio();
   autoplay: boolean = true;
 
   displayColor: object = {'background-color': 'rgb(245, 215, 215, 0)'}; 
   displayText: string = ''
-
-  img: object =  {'background-image': 'url(https://app-learnwords-rslang.herokuapp.com/files/03_0045.jpg)'};
-  word: string = 'capital - [kæpətl] - столица';
-  meaningEn: string = "To <i>describe</i> is to say or write what someone or something is like.";
-  meaningRu: string = "Описать - это сказать или написать, на что похож кто-то или что-то";
-  exampleEn: string = "They <b>described</b> their tree as colorful, with gold ribbon and a star.";
-  exampleRu: string = "Они описали свое дерево как красочное, с золотой лентой и звездой";
-  wordSound: string = 'https://app-learnwords-rslang.herokuapp.com/files/03_0045.mp3';
-  meaningSound: string = 'https://app-learnwords-rslang.herokuapp.com/files/03_0045_meaning.mp3';
-  exampleSound: string = 'https://app-learnwords-rslang.herokuapp.com/files/03_0045_example.mp3';
   
+  img: object;
+  word: string;
+  meaningEn: string;
+  meaningRu: string;
+  exampleEn: string;
+  exampleRu: string;
+  wordSound: string;
+  meaningSound: string;
+  exampleSound: string;
+
+  updateBlock() {
+    this.img =  {'background-image': `url(https://app-learnwords-rslang.herokuapp.com/${this.wordInstance.image})`};
+    this.word = `${this.wordInstance.word} - ${this.wordInstance.transcription} - ${this.wordInstance.wordTranslate}`;
+    this.meaningEn = this.wordInstance.textMeaning;
+    this.meaningRu = this.wordInstance.textMeaningTranslate;
+    this.exampleEn = this.wordInstance.textExample;
+    this.exampleRu = this.wordInstance.textExampleTranslate;
+    this.wordSound = `https://app-learnwords-rslang.herokuapp.com/${this.wordInstance.audio}`;
+    this.meaningSound = `https://app-learnwords-rslang.herokuapp.com/${this.wordInstance.audioMeaning}`;
+    this.exampleSound = `https://app-learnwords-rslang.herokuapp.com/${this.wordInstance.audioExample}`;
+  }
 
   sound() {
     let count = 0;
     const play = (url: string): void => {
       this.audio.src = url;
       const audio = this.audio; 
-      setTimeout(function () {      
+      setTimeout(function () {
         audio.play();
       }, 150);
     }
@@ -68,6 +83,7 @@ export class WordBlockComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.updateBlock();
   }
 
 }

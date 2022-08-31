@@ -19,6 +19,7 @@
 }
 
 .content {
+  width: 676px;
   flex-grow: 1;
   display: flex;
   align-items: flex-start;
@@ -66,6 +67,12 @@
   color: rgb(255, 4, 4);
 }
 
+@media (max-width: 1280px) {
+  .content {
+    width: 476px;
+  }
+}
+
 @media (max-width: 991px) {
   .block-wrapper {
     flex-direction: column;
@@ -74,13 +81,7 @@
 
   .content {
     width: 590px;
-    flex-grow: 1;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-direction: column;
     padding: 20px;
-    gap: 10px;
   }
 
   .img {

@@ -4,7 +4,7 @@
   </header>
   <main>
     <div class="main-wrapper" [ngStyle]="shadow">
-      <app-textbook-nav (colorValue)="changeBG($event)"></app-textbook-nav>
+      <app-textbook-nav (sectionInfo)="changeSection($event)"></app-textbook-nav>
       <hr class='line'>
       <div class='pagination'>
         <div
@@ -17,7 +17,10 @@
         (click)='toRight()'
       >&#5171;</div>
       </div>
-      <app-word-block></app-word-block>
+      <app-word-block
+        *ngFor='let word of words'
+        [wordInstance]='word'
+      ></app-word-block>
     </div>
   </main>
   <footer class="wrapper">

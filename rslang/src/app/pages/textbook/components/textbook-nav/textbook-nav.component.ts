@@ -7,10 +7,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class TextbookNavComponent implements OnInit {
 
-  @Output() colorValue = new EventEmitter<string>();
+  @Output() sectionInfo = new EventEmitter<[string, number]>();
 
-  getColor(color: string): void {
-    this.colorValue.emit(color);
+  getColor(color: string, group: number): void {
+    this.sectionInfo.emit([color, group]);
   }
 
   ngOnInit(): void {
