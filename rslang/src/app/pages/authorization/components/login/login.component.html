@@ -1,5 +1,24 @@
 <div class="wrapper">
-  <app-input [placeholder]="emailPlaceholder" [type]="emailType"></app-input>
-  <app-input [placeholder]="passwordPlaceholder" [type]="passwordType"></app-input>
-  <app-button-main-page [buttonTitle]="buttonTitle" [color]="buttonColor"></app-button-main-page>
+  <p class="help" *ngIf="isLogError">Неправильный e-mail или пароль!</p>
+  <app-input
+    [placeholder]="emailPlaceholder"
+    [type]="emailType"
+    [controlName]="emailControl"
+    [form]="logForm"
+    [ngClass]="{'has-error': email?.invalid && email?.touched}"
+  ></app-input>
+  <p class="help" *ngIf="email?.invalid && email?.touched">E-mail не должен быть пустым</p>
+  <app-input
+    [placeholder]="passwordPlaceholder"
+    [type]="passwordType"
+    [controlName]="passwordControl"
+    [form]="logForm"
+    [ngClass]="{'has-error': password?.invalid && password?.touched}"
+  ></app-input>
+  <p class="help" *ngIf="password?.invalid && password?.touched">Пароль не должен быть пустым</p>
+  <app-button-main-page
+    [buttonTitle]="buttonTitle"
+    [color]="buttonColor"
+    (click)="submit()"
+  ></app-button-main-page>
 </div>
