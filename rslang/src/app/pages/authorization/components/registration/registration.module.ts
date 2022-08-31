@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegistrationComponent } from './registration.component';
 import { InputModule } from 'src/app/shared/input/input.module';
 import { ButtonPageModule } from 'src/app/shared/button-main-page/button-page.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import { ButtonPageModule } from 'src/app/shared/button-main-page/button-page.mo
   imports: [
     CommonModule,
     InputModule,
-    ButtonPageModule
+    ButtonPageModule,
+    ReactiveFormsModule
   ],
   exports: [
     RegistrationComponent

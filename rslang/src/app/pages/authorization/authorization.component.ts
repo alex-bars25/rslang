@@ -13,7 +13,7 @@ export class AuthorizationComponent implements OnInit {
 
   constructor() {
     this.title = 'RS Lang';
-    this.isRegistered = true;
+    this.isRegistered = false;
     this.text = 'Не зарегистрированы?';
     this.link = 'Создать аккаунт';
 }
@@ -31,5 +31,4 @@ export class AuthorizationComponent implements OnInit {
       this.link = 'Войти';
     }
   }
-
 }
