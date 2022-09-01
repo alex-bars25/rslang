@@ -64,11 +64,16 @@ export class LoginComponent implements OnInit, OnDestroy {
         password: this.logForm.value.password
       }
       this.api.loginUser(user).pipe(takeUntil(this.destroy$)).subscribe({
-        next: (user: LoggedUser) => this.api.loggedUser = user,
+        next: (user: LoggedUser) => {
+          localStorage.setItem('token', user.token);
+          localStorage.setItem('refreshToken', user.refreshToken);
+          localStorage.setItem('userId', user.userId);
+          localStorage.setItem('name', user.name);  
+        },
         complete: () => {
           this.isLogError = false;
           this.logForm.reset();
-          this.router.navigate(['/home'])
+          this.router.navigate(['/home']);
         },
         error: () => {
           this.isLogError = true;

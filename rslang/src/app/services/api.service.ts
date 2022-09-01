@@ -8,7 +8,6 @@ import { LoggedUser, User, IWord } from 'src/types';
   providedIn: 'root'
 })
 export class ApiService {
-  public loggedUser: LoggedUser;
 
   constructor(private http: HttpClient) { }
 

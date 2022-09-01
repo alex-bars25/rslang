@@ -96,8 +96,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
           this.isRegError = false;
           this.regForm.reset();
           this.api.loginUser(user).pipe(takeUntil(this.destroy$)).subscribe((user: LoggedUser) => {
-            this.api.loggedUser = user;
-            this.router.navigate(['/home'])
+            this.router.navigate(['/home']);
+            localStorage.setItem('token', user.token);
+            localStorage.setItem('refreshToken', user.refreshToken);
+            localStorage.setItem('userId', user.userId);
+            localStorage.setItem('name', user.name);  
           });
         },
         error: () => {

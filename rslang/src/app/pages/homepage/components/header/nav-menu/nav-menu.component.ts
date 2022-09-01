@@ -22,6 +22,7 @@ export class NavMenuComponent implements OnInit {
 
   goToLoginPage() {
     this.router.navigateByUrl("/authorization");
+    localStorage.clear();
   }
 
   ngOnInit(): void {
