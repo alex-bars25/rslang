@@ -1,0 +1,79 @@
+.main-wrapper {
+  width: 1100px;
+  min-height: calc(100vh - 202px);
+  padding: 1.5rem 2rem;
+  margin: 2rem auto;
+  background-color: #ffffff86;
+  border-radius: 0.3rem;
+}
+
+.pagination {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.pagination-btn {
+  width: 30px;
+  height: 30px;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  border: 1px solid rgb(67, 68, 68);
+  box-shadow: 2px 2px 3px 2px rgb(111, 111, 109);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.pagination-btn:active {
+  box-shadow: none;
+}
+
+.page-number{
+  font-size: 1.5rem;
+}
+
+@media (max-width: 1280px) {
+  .main-wrapper {
+    width: 900px;
+  }
+}
+
+@media (max-width: 991px) {
+  .main-wrapper {
+    width: 700px;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-wrapper {
+    width: 530px;
+  }
+}
+
+@media (max-width: 550px) {
+  .main-wrapper {
+    width: 100%;
+  }
+}
+
+.line {
+  margin: 0.5rem 0;
+  border: 0;
+  border-top: 1px solid rgba(81, 81, 81, 0.195);
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.bg::ng-deep {
+  .wrapper:first-child {
+    background-image: url('../../../assets/textbook.jpg');
+  }
+}

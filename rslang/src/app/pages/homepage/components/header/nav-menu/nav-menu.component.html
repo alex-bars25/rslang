@@ -1,8 +1,8 @@
 <div class="nav-wrapper">
   <nav class="navigation">
     <ul class="nav-list">
-      <li class="nav-item"><a href="home" class="nav-link">Главная</a></li>
-      <li class="nav-item"><a href="home" class="nav-link">Учебник</a></li>
+      <li class="nav-item"><a (click)="goToHomePage()" class="nav-link">Главная</a></li>
+      <li class="nav-item"><a (click)="goToTextbookPage()" class="nav-link">Учебник</a></li>
       <li class="nav-item"><a href="home" class="nav-link">Словарь</a></li>
       <li class="nav-item">
         <select class="select-nav">
@@ -19,5 +19,6 @@
   class='block-button'
   [color]='buttonColor'
   [buttonTitle]='buttonTitle'
+  (click)="goToLoginPage()"
   ></app-button-main-page>
 </div>

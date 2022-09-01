@@ -1,0 +1,84 @@
+.nav-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.sections{
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.section-btn {
+  height: 30px;
+  width: 40px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px 2px rgb(111, 111, 109);
+  cursor: pointer;
+}
+
+.a1 {
+  background-color: rgb(154, 243, 207);
+}
+
+.a2 {
+  background-color: rgb(99, 219, 171);
+}
+
+.b1 {
+  background-color: rgb(244, 233, 157);
+}
+
+.b2 {
+  background-color: rgb(231, 231, 79);
+}
+
+.c1 {
+  background-color: rgb(137, 228, 242);
+}
+
+.c2 {
+  background-color: rgb(78, 177, 226);
+}
+
+.dictionary {
+  width: 80px;
+  background-color: rgb(243, 123, 123);
+}
+
+.game {
+  width: 110px;
+  border-radius: 20px;
+  background-color: rgb(213, 224, 251);
+}
+
+.section-btn:active {
+  box-shadow: none;
+}
+
+.active {
+  box-shadow: none;
+}
+
+.game:active {
+  background-color: rgb(213, 224, 251);
+}
+
+@media (max-width: 767px) {
+  .nav-wrapper{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sections{
+    order: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
