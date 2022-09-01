@@ -6,8 +6,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./welcome-block.component.scss']
 })
 export class WelcomeBlockComponent {
+  public name: string;
 
-  @Input() name: String;
-
+  constructor() {
+    this.name = localStorage.getItem('name')!
+  }
 
 }

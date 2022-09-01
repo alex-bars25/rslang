@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authorization',
@@ -11,7 +12,7 @@ export class AuthorizationComponent implements OnInit {
   public text: string;
   public link: string;
 
-  constructor() {
+  constructor(private router: Router) {
     this.title = 'RS Lang';
     this.isRegistered = true;
     this.text = 'Не зарегистрированы?';
@@ -19,6 +20,9 @@ export class AuthorizationComponent implements OnInit {
 }
 
   ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['/home']);
+    }
   }
 
   public switchForm() {
