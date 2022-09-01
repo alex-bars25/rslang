@@ -1,9 +1,41 @@
 <div class="wrapper">
-  <app-input [placeholder]="emailPlaceholder" [type]="emailType"></app-input>
-  <app-input [placeholder]="userPlaceholder" [type]="userType"></app-input>
+  <p class="help" *ngIf="isRegError">Пользователь с таким e-mail уже существует!</p>
+  <app-input
+    [placeholder]="emailPlaceholder"
+    [type]="emailType"
+    [controlName]="emailControl"
+    [form]="regForm"
+    [ngClass]="{'has-error': email?.invalid && email?.touched}"
+  ></app-input>
+  <p class="help" *ngIf="email?.invalid && email?.touched">Заполните e-mail по примеру: example@mail.com</p>
+  <app-input
+    [placeholder]="namePlaceholder"
+    [type]="nameType"
+    [controlName]="nameControl"
+    [form]="regForm"
+    [ngClass]="{'has-error': name?.invalid && name?.touched}"
+  ></app-input>
+  <p class="help" *ngIf="name?.invalid && name?.touched">Имя пользователя не должно быть пустым</p>
   <div class="password">
-    <app-input class="password-input" [placeholder]="passwordPlaceholder" [type]="passwordType"></app-input>
-    <app-button-main-page class="password-btn" [imgUrl]="passBtnImg" [color]="passBtnColor" (click)="showHidePassword()"></app-button-main-page>  
+    <app-input
+      class="password-input"
+      [placeholder]="passwordPlaceholder"
+      [type]="passwordType"
+      [controlName]="passwordControl"
+      [form]="regForm"
+      [ngClass]="{'has-error': password?.invalid && password?.touched}"
+    ></app-input>
+    <app-button-main-page
+      class="password-btn"
+      [imgUrl]="passBtnImg"
+      [color]="passBtnColor"
+      (click)="showHidePassword()"
+    ></app-button-main-page>  
   </div>
-  <app-button-main-page class="reg-btn" [buttonTitle]="regBtnTitle" [color]="regBtnColor"></app-button-main-page>
+  <p class="help" *ngIf="password?.invalid && password?.touched">Пароль должен содержать по крайней мере 8 символов, цифру, прописную и строчную букву</p>
+  <app-button-main-page
+    [buttonTitle]="regBtnTitle"
+    [color]="regBtnColor"
+    (click)="submit()"
+  ></app-button-main-page>
 </div>

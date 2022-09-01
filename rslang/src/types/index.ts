@@ -1,5 +1,6 @@
 export type InputType = 'password' | 'text' | 'email';
 
+
 export interface IWord {
   "id": "string",
   "group": "number",
@@ -30,3 +31,4 @@ export interface LoggedUser {
   userId: string;
   name: string;
 }
+

@@ -9,10 +9,23 @@
   }
 }
 
+.help {
+  color: #373d3d;
+  background: #ff48004d;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+}
+
 .password {
   display: flex;
 }
 
 .password-input {
   flex-basis: 100%;
+}
+
+.has-error {
+  box-shadow: 0 0 6px #ff0000;
+  border-radius: 0.3rem;
 }

@@ -21,7 +21,6 @@ import { HttpClientModule } from '@angular/common/http';
       AuthorizationModule,
       TextbookModule,
       HttpClientModule
-
     ],
   providers: [],
   bootstrap: [AppComponent]

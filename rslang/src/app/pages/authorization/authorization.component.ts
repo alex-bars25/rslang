@@ -31,5 +31,4 @@ export class AuthorizationComponent implements OnInit {
       this.link = 'Войти';
     }
   }
-
 }
