@@ -19,6 +19,7 @@
   padding: 5px;
   text-align: center;
   border-radius: 3px;
+  box-shadow: 2px 2px 3px 2px rgb(111, 111, 109);
   cursor: pointer;
 }
 
@@ -55,15 +56,18 @@
   width: 110px;
   border-radius: 20px;
   background-color: rgb(213, 224, 251);
-  box-shadow: 2px 2px 3px 2px rgb(111, 111, 109);
 }
 
 .section-btn:active {
-  background-color: rgb(168, 169, 170);
+  box-shadow: none;
+}
+
+.active {
+  box-shadow: none;
 }
 
 .game:active {
-  box-shadow: none;
+  background-color: rgb(213, 224, 251);
 }
 
 @media (max-width: 767px) {

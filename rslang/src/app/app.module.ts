@@ -7,6 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { HomepageModule } from "./pages/homepage/homepage.module";
 import { AuthorizationModule } from './pages/authorization/authorization.module';
 import { TextbookModule } from './pages/textbook/textbook.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { TextbookModule } from './pages/textbook/textbook.module';
       FormsModule,
       HomepageModule,
       AuthorizationModule,
-      TextbookModule
+      TextbookModule,
+      HttpClientModule
+
     ],
   providers: [],
   bootstrap: [AppComponent]

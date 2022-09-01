@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IWord } from '../../../types/index';
-import { getWords } from '../../services/api';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-textbook',
@@ -8,6 +8,9 @@ import { getWords } from '../../services/api';
   styleUrls: ['./textbook.component.scss']
 })
 export class TextbookComponent implements OnInit {
+
+  constructor(private api: ApiService) {}
+
   group: number = 0;
   page: number = 1;
   shadow: object =  {'box-shadow': 'inset 0 0 100px rgb(154, 243, 207)'};
@@ -16,6 +19,7 @@ export class TextbookComponent implements OnInit {
   changeSection ([color, group]: [string, number]): void{
     this.shadow =  {'box-shadow': `inset 0 0 100px ${color}`};
     this.group = group;
+    this.page = 1;
     this.updateWordsList();
   }
 
@@ -30,9 +34,7 @@ export class TextbookComponent implements OnInit {
   }
 
   updateWordsList: () => void  = (): void => {
-    (async () => {
-      this.words = await getWords(this.group, this.page - 1);
-      })();
+    this.api.getWords(this.group, this.page -1).subscribe((words: IWord[]) => this.words = words)
     }
 
   ngOnInit(): void {

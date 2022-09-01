@@ -10,7 +10,6 @@ export class InputComponent implements OnInit {
 
   @Input() placeholder?: string;
   @Input() type: InputType;
-  @Input() id: string;
   @Output() editValue = new EventEmitter<string>();
 
   ngOnInit(): void {
