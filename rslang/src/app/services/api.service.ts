@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoggedUser, User } from 'src/types';
+import { LoggedUser, User, IWord } from 'src/types';
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,18 @@ export class ApiService {
       }
     )
   }
+
+  public getWords(group: number, page: number): Observable<IWord[]> {
+    return this.http.get<IWord[]>(
+      'https://app-learnwords-rslang.herokuapp.com/words',
+      {
+        params: {
+          'group': group,
+          'page': page
+        }
+      }
+    )
+  }
+
 
 }

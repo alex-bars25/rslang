@@ -1,0 +1,29 @@
+<app-page-container class='bg'>
+  <header class="wrapper">
+    <app-header></app-header>
+  </header>
+  <main>
+    <div class="main-wrapper" [ngStyle]="shadow">
+      <app-textbook-nav (sectionInfo)="changeSection($event)"></app-textbook-nav>
+      <hr class='line'>
+      <div class='pagination'>
+        <div
+        class='pagination-btn'
+        (click)='toLeft()'
+        >&#5176;</div>
+        <div class="page-number">{{page}}</div>
+      <div
+        class='pagination-btn'
+        (click)='toRight()'
+      >&#5171;</div>
+      </div>
+      <app-word-block
+        *ngFor='let word of words'
+        [wordInstance]='word'
+      ></app-word-block>
+    </div>
+  </main>
+  <footer class="wrapper">
+    <app-footer-block></app-footer-block>
+  </footer>
+</app-page-container>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,8 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavMenuComponent implements OnInit {
 
+  constructor(private router: Router) { }
   buttonColor = '#95a5a6';
   buttonTitle = 'Выход';
+
+  goToHomePage() {
+    this.router.navigateByUrl("/home");
+  }
+
+  goToTextbookPage() {
+    this.router.navigateByUrl("/textbook");
+  }
+
+  goToLoginPage() {
+    this.router.navigateByUrl("/authorization");
+  }
 
   ngOnInit(): void {
   }
