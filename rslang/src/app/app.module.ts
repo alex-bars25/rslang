@@ -18,7 +18,6 @@ import {AudioGameModule} from "./pages/audio-game/audio-game.module";
       FormsModule,
       HomepageModule,
       AuthorizationModule,
-      AudioGameModule
     ],
   providers: [],
   bootstrap: [AppComponent]
