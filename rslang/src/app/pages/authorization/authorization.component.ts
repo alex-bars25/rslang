@@ -13,7 +13,7 @@ export class AuthorizationComponent implements OnInit {
 
   constructor() {
     this.title = 'RS Lang';
-    this.isRegistered = false;
+    this.isRegistered = true;
     this.text = 'Не зарегистрированы?';
     this.link = 'Создать аккаунт';
 }
