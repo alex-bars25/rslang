@@ -33,6 +33,7 @@ export class ApiService {
   }
 
   public getWords(group: number, page: number): Observable<IWord[]> {
+    console.log(group, page)
     return this.http.get<IWord[]>(
       'https://app-learnwords-rslang.herokuapp.com/words',
       {

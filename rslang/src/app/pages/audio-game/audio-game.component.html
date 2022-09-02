@@ -5,13 +5,15 @@
       <app-audio-game-levels
         *ngIf="display === 1"
         (groupOfWords)="changeGroup($event)">
-
       </app-audio-game-levels>
     </div>
-    <div class="audio-wrap-play" *ngIf="display === 2">
-      <app-audio-game-play></app-audio-game-play>
+    <div class="audio-wrap-play"
+         *ngIf="display === 2">
+      <app-audio-game-play [wordInstance]="words"
+      ></app-audio-game-play>
     </div>
-        <div class="audio-wrap-statist" *ngIf="display === 3">
+        <div class="audio-wrap-statist"
+             *ngIf="display === 3">
         <app-audio-game-staticticks></app-audio-game-staticticks>
         </div>
   </div>

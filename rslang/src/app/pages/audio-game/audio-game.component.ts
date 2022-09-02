@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ApiService} from "../../services/api.service";
+import {IWord} from "../../../types";
 
 @Component({
   selector: 'app-audio-game',
@@ -7,20 +9,28 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class AudioGameComponent implements OnInit {
 
-  @Input() dis:number = 2;
-
   display:number = 1;
-  levelWords: number;
+  group: number;
+  words: IWord[] | [] = [];
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
   }
 
 
-  changeGroup([number]:[number]) {
-
-    this.levelWords = number;
-    console.log(this.levelWords)
+  changeGroup(group:number) {
+    const page: number = Math.ceil(Math.random() * 29 - 1);
+    this.getLevelWords(group, page)
+    this.display = 2;
   }
+
+
+  getLevelWords(group:number, page: number): void {
+    this.api.getWords(group, page)
+      .subscribe((resp:IWord[]) =>  {
+        this.words = resp;
+      });
+  }
+
 }

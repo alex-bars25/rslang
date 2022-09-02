@@ -9,19 +9,16 @@ export class AudioGameLevelsComponent implements OnInit {
 
   constructor() { }
 
-
-  isActiveGroup: boolean[] = [true, false, false, false, false]
   group: number = 2;
 
 
-  @Output() groupOfWords = new EventEmitter<[number]>()
-
+  @Output() groupOfWords = new EventEmitter<number>()
 
   ngOnInit(): void {
   }
 
   getGroup(currentGroup:number):void {
-    this.groupOfWords.emit([currentGroup])
+    this.groupOfWords.emit(currentGroup)
   }
 
 }
