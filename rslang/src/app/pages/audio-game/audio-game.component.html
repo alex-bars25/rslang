@@ -1,14 +1,14 @@
 <div class="audio-main-wrapper">
   <app-header></app-header>
   <div class="audio-wrapper">
-    <div class="audio-wrap-levels">
+    <div class="audio-wrap-levels" *ngIf="display === 1">
       <app-audio-game-levels></app-audio-game-levels>
     </div>
-<!--    <div class="audio-wrap-play">-->
-<!--      <app-audio-game-play></app-audio-game-play>-->
-<!--    </div>-->
-<!--        <div class="audio-wrap-statist">-->
-<!--        <app-audio-game-staticticks></app-audio-game-staticticks>-->
-<!--        </div>-->
+    <div class="audio-wrap-play" *ngIf="display === 2">
+      <app-audio-game-play></app-audio-game-play>
+    </div>
+        <div class="audio-wrap-statist" *ngIf="display === 3">
+        <app-audio-game-staticticks></app-audio-game-staticticks>
+        </div>
   </div>
 </div>

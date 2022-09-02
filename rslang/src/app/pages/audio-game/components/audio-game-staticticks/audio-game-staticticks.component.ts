@@ -11,7 +11,7 @@ export class AudioGameStaticticksComponent implements OnInit {
   titleFinish: string = 'Закончить игру!';
   logoRepeat: string = "./assets/repeat-log.svg";
   logoFinish: string = "./assets/fin.svg"
-  pageRepeat: string;
+  pageRepeat: string = "/audio_game";
   pageFinish: string = '/home';
 
   constructor() { }
