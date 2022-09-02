@@ -7,35 +7,19 @@
     </div>
     <div class="answers-btns">
       <div class="answer-item"
+           [style.display]="visibility === true ? 'block' : 'none'"
+           [style.display]="rightV === true ? 'block' : 'none'"
            *ngFor="let word of wordRightDisp;
-           index as i">
+           index as i"
+           (click)="checkWord(word.wordTranslate, i)"
+      >
         <div class="item-number" [attr.data-index]="i + 1">{{i+1}}</div>
-        <span class="item-word">{{word.word}}</span>
+        <span class="item-word">{{word.wordTranslate}}</span>
         <span class="item-block-word"></span>
       </div>
-<!--      <div class="answer-item">-->
-<!--        <div class="item-number">2</div>-->
-<!--        <span class="item-word">Неприкасаемый</span>-->
-<!--        <span class="item-block-word"></span>-->
-<!--      </div>-->
-<!--      <div class="answer-item">-->
-<!--        <div class="item-number">3</div>-->
-<!--        <span class="item-word">Неприкасаемый</span>-->
-<!--        <span class="item-block-word"></span>-->
-<!--      </div>-->
-<!--      <div class="answer-item">-->
-<!--        <div class="item-number">4</div>-->
-<!--        <span class="item-word">Неприкасаемый</span>-->
-<!--        <span class="item-block-word"></span>-->
-<!--      </div>-->
-<!--      <div class="answer-item">-->
-<!--        <div class="item-number">5</div>-->
-<!--        <span class="item-word">Неприкасаемый</span>-->
-<!--        <span class="item-block-word"></span>-->
-<!--      </div>-->
     </div>
   <div class="follow-btn">
-    <button type="button">
+    <button type="button" (click)="getWord()">
       <span class="btn-follow">Не знаю</span>
       <span class="btn-block-word"></span>
     </button>

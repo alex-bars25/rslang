@@ -10,6 +10,13 @@ export class AudioGamePlayComponent implements OnInit {
 
   @Input() wordInstance!: IWord[];
 
+  count: number = 0;
+  visibility: boolean = true;
+  rightV: boolean = true;
+
+  statisticRightAnswers: Array<string> = [];
+  statisticWrongAnswers: Array<string> = [];
+
   audio: HTMLAudioElement = new Audio();
   autoplay: boolean = true;
 
@@ -17,24 +24,24 @@ export class AudioGamePlayComponent implements OnInit {
   wordSound: string;
   wordsAudio: IWord[];
 
+  onlyRightW: string;
+
+
+
   constructor() { }
 
   ngOnInit(): void {
-    this.getWord()
+    this.getWord();
   }
 
   getWord() {
     setTimeout(() => {
       this.wordsAudio = this.wordInstance;
       this.updateBlock(this.wordsAudio)
-    }, 1500)
+    }, 1000)
   }
 
   updateBlock(words: IWord[]) {
-    console.log(words)
-    words.map((word, ind) => {
-    });
-
     let copyArr: IWord[] =  [...words];
 
     copyArr = copyArr.sort((a,b) =>{
@@ -46,14 +53,25 @@ export class AudioGamePlayComponent implements OnInit {
       }
       return 0;
     })
-
     const curArr = copyArr.slice(0,5);
     const rightWord = curArr[3];
-
+    this.onlyRightW = rightWord.wordTranslate;
     this.wordSound = `https://app-learnwords-rslang.herokuapp.com/${rightWord.audio}`;
-
+    this.sound();
     this.wordRightDisp = curArr;
-    console.log(curArr)
+  }
+
+  checkWord(word: string, i: number) {
+
+    if (word === this.onlyRightW) {
+      console.log('WWWw')
+      this.statisticRightAnswers.push(word);
+
+    }
+    else {
+      this.visibility = false;
+      this.statisticWrongAnswers.push(word);
+    }
   }
 
   sound() {
@@ -65,12 +83,8 @@ export class AudioGamePlayComponent implements OnInit {
       }, 150);
     }
     if(this.autoplay) {
-      // this.autoplay = false;
       play(this.wordSound);
-
     }
   }
-
-
 
 }
