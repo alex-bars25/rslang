@@ -44,6 +44,7 @@ export class WordBlockComponent implements OnInit {
     const play = (url: string): void => {
       this.audio.src = url;
       const audio = this.audio; 
+      this.audioLogo = "./assets/mute.png";
       setTimeout(function () {
         audio.play();
       }, 150);
@@ -61,19 +62,23 @@ export class WordBlockComponent implements OnInit {
           play(this.exampleSound);
         } else if (count === 2){
           this.autoplay = true;
+          this.audioLogo = "./assets/volume_Icon.svg";
         }
       });
     }
     if (!this.autoplay && this.audio.currentTime > 0 && !this.audio.paused && !this.audio.ended ) {
+      this.audio.currentTime = 0;
       this.audio.pause();
-      this.audio.currentTime = 0; 
       this.autoplay = true;
+      this.audioLogo = "./assets/volume_Icon.svg";
     }
   }
 
   putToDif() {
+    if (this.displayText !== 'ИЗУЧЕНОЕ') {
     this.displayText = 'СЛОЖНОЕ';
     this.displayColor = {'background-color': 'rgb(245, 215, 215)'};
+    }
   }
 
   putToStud() {

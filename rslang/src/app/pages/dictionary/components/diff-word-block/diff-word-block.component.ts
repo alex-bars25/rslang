@@ -44,6 +44,7 @@ export class DiffWordBlockComponent implements OnInit {
     const play = (url: string): void => {
       this.audio.src = url;
       const audio = this.audio; 
+      this.audioLogo = "./assets/mute.png";
       setTimeout(function () {
         audio.play();
       }, 150);
@@ -61,6 +62,7 @@ export class DiffWordBlockComponent implements OnInit {
           play(this.exampleSound);
         } else if (count === 2){
           this.autoplay = true;
+          this.audioLogo = "./assets/volume_Icon.svg";
         }
       });
     }
@@ -68,6 +70,7 @@ export class DiffWordBlockComponent implements OnInit {
       this.audio.pause();
       this.audio.currentTime = 0; 
       this.autoplay = true;
+      this.audioLogo = "./assets/volume_Icon.svg";
     }
   }
 

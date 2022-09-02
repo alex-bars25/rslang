@@ -13,7 +13,7 @@ export class DictionaryComponent implements OnInit {
 
   group: number = 0;
   page: number = 1;
-  shadow: object =  {'box-shadow': 'inset 0 0 100px rgb(154, 243, 207)'};
+  shadow: object =  {'box-shadow': 'inset 0 0 100px #4eb1e2'};
   words: IWord[] | [] =[];
 
   changeSection ([color, group]: [string, number]): void{
