@@ -6,8 +6,8 @@
     <div (click)="getColor('#e7e74f', 3)" class='section-btn b2' [ngClass]="{active: isActive[3]}">B2</div>
     <div (click)="getColor('#89e4f2', 4)" class='section-btn c1' [ngClass]="{active: isActive[4]}">C1</div>
     <div (click)="getColor('#4eb1e2', 5)" class='section-btn c2' [ngClass]="{active: isActive[5]}">C2</div>
-    <a routerLink='' class='section-btn dictionary'>Словарь</a>
+    <a (click)="goToDictionaryPage()" class='section-btn dictionary'>Словарь</a>
   </div>
-  <a routerLink='' class='section-btn game'>Спринт</a>
-  <a routerLink='' class='section-btn game'>Аудиовызов</a>
+  <a (click)="goToSprintPage()" class='section-btn game'>Спринт</a>
+  <a (click)="goToAudioGamePage()" class='section-btn game'>Аудиовызов</a>
 </div>

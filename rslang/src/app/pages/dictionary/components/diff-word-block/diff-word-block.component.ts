@@ -2,20 +2,20 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IWord } from '../../../../../types/index';
 
 @Component({
-  selector: 'app-word-block',
-  templateUrl: './word-block.component.html',
-  styleUrls: ['./word-block.component.scss']
+  selector: 'app-diff-word-block',
+  templateUrl: './diff-word-block.component.html',
+  styleUrls: ['./diff-word-block.component.scss']
 })
-export class WordBlockComponent implements OnInit {
-
-  @Input() wordInstance!: IWord ;
+export class DiffWordBlockComponent implements OnInit {
+  
+  @Input() wordInstance!: IWord;
 
   audioLogo: string = "./assets/volume_Icon.svg";
   audio: HTMLAudioElement = new Audio();
   autoplay: boolean = true;
 
-  displayColor: object = {'background-color': 'rgb(245, 215, 215, 0)'}; 
-  displayText: string = ''
+  displayColor: object = {'background-color': 'rgb(245, 215, 215)'}; 
+  displayText: string = 'СЛОЖНОЕ'
   
   img: object;
   word: string;
@@ -71,18 +71,15 @@ export class WordBlockComponent implements OnInit {
     }
   }
 
-  putToDif() {
-    this.displayText = 'СЛОЖНОЕ';
-    this.displayColor = {'background-color': 'rgb(245, 215, 215)'};
+  excludedFromDiff() {
+    // excludedFromDiff
   }
 
   putToStud() {
-    this.displayText = 'ИЗУЧЕНОЕ';
-    this.displayColor = {'background-color': 'rgb(245, 215, 215)'};
+    // put to StudiesWords
   }
 
   ngOnInit(): void {
     this.updateBlock();
   }
-
 }

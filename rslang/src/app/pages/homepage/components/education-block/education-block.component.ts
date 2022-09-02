@@ -12,7 +12,7 @@ export class EducationBlockComponent implements OnInit {
   educationImgBook: string = "./assets/educ-book.jpg";
   educationImgDiction: string = "./assets/educ-dictionary.jpg";
   bookIssue: string = 'Более 3500 слов для изучения, разбитых на конкретные разделы по уровню твоей подготовки с удобной навигацией между собой';
-  dictionIssue: string = 'Создай свой персональный словарь для изучения слов, где ты можешь добавлять новые слова или удалять изученные слова';
+  dictionIssue: string = 'Твой персональный словарь. В раздел "сложные" добовляй те, которые не удалось выучить сразу. В разделе "изученые" найдешь все, что уже изучил.';
   educBtnTitle: string = 'Вперед'
   bookImgSrc: string = "./assets/book-elec.svg";
   dictionaryImgSrc: string = "./assets/vocab.svg";

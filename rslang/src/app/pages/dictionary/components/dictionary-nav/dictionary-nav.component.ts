@@ -2,34 +2,34 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-textbook-nav',
-  templateUrl: './textbook-nav.component.html',
-  styleUrls: ['./textbook-nav.component.scss']
+  selector: 'app-dictionary-nav',
+  templateUrl: './dictionary-nav.component.html',
+  styleUrls: ['./dictionary-nav.component.scss']
 })
-export class TextbookNavComponent implements OnInit {
+export class DictionaryNavComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  isActive: boolean[] = [true, false, false, false, false, false];
+  isActive: boolean[] = [true, false];
 
   @Output() sectionInfo = new EventEmitter<[string, number]>();
 
   getColor(color: string, group: number): void {
     this.sectionInfo.emit([color, group]);
-    this.isActive = [false, false, false, false, false, false];
+    this.isActive = [false, false];
     this.isActive[group] = true;
   } 
 
-  public goToSprintPage() {
+  goToSprintPage() {
     this.router.navigateByUrl("/sprint");
   }
 
-  public goToAudioGamePage() {
+  goToAudioGamePage() {
     this.router.navigateByUrl("/audio_game");
   }
 
-  public goToDictionaryPage() {
-    this.router.navigateByUrl("/dictionary");
+  goToTextbookPage() {
+    this.router.navigateByUrl("/textbook");
   }
 
   ngOnInit(): void {

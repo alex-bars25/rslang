@@ -19,5 +19,6 @@ export class BtnActionComponent implements OnInit {
 
   public goToPage(page: string) {
     this.router.navigate([page]);
+    window.scrollTo(0, 0);
   }
 }

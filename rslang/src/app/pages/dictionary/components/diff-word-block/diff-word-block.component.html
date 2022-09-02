@@ -1,0 +1,22 @@
+<div class="block-wrapper">
+  <div class="img" [ngStyle]="img"></div>
+  <div class="content">
+    <h3>{{word}}</h3>
+    <p>
+      <span [innerHtml]="meaningEn"></span><br>
+      <span [innerHtml]="meaningRu" class='translate'></span>
+    </p>
+    <p>
+      <span [innerHtml]="exampleEn"></span><br>
+      <span [innerHtml]="exampleRu" class='translate'></span>
+    </p>
+    <div class="btn-wrapper">
+      <app-button-main-page [imgUrl]="audioLogo" (click)="sound()" class='btn'></app-button-main-page>
+      <div class="display" [ngStyle]="displayColor">{{displayText}}</div>
+    </div>
+    <div class="btn-wrapper">
+      <app-button-main-page [buttonTitle]="'Удалить из сложных'" [color]="'#6a96cf'" (click)="excludedFromDiff()" class='btn'></app-button-main-page>
+      <app-button-main-page [buttonTitle]="'Изученое слово'" [color]="'#6a96cf'" (click)="putToStud()" class='btn'></app-button-main-page>
+    </div>
+  </div>
+</div>

@@ -3,18 +3,18 @@
     <ul class="nav-list">
       <li class="nav-item"><a (click)="goToHomePage()" class="nav-link">Главная</a></li>
       <li class="nav-item"><a (click)="goToTextbookPage()" class="nav-link">Учебник</a></li>
-      <li class="nav-item"><a href="home" class="nav-link">Словарь</a></li>
+      <li class="nav-item"><a (click)="goToDictionaryPage()" class="nav-link">Словарь</a></li>
       <li class="nav-item">
         <form #f="ngForm">
           <select class="select-nav" name="game" ngModel (change)="navigateTo(f.value.game)">
             <option value=""><p class="option-main">Игры</p></option>
-            <option class="option-nav" value=""><span class="nav-link">Аудиовызов</span> </option>
+            <option class="option-nav" value="/audio_game"><span class="nav-link">Аудиовызов</span> </option>
             <option class="option-nav" value="/sprint"><span class="nav-link">Спринт</span></option>
           </select>
         </form>
       </li>
       <li class="nav-item"><a href="home" class="nav-link">Статистика</a></li>
-      <li class="nav-item"><a href="javascript:window.scrollTo(0,document.body.scrollHeight)" class="nav-link">О команде</a></li>
+      <li class="nav-item"><a (click)="goToAbout()" class="nav-link">О команде</a></li>
     </ul>
   </nav>
   <app-button-main-page
