@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'authorization', component: AuthorizationComponent },
   { path: 'home', component: HomepageComponent },
   { path: 'audio_game', component: AudioGameComponent},
-  { path: 'textbook', component: TextbookComponent }
   { path: 'textbook', component: TextbookComponent },
   { path: 'sprint', component: SprintGameComponent }
 ];
