@@ -9,12 +9,18 @@ export class AudioGameComponent implements OnInit {
 
   @Input() dis:number = 2;
 
-  display:number = 3;
-
+  display:number = 1;
+  levelWords: number;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  changeGroup([number]:[number]) {
+
+    this.levelWords = number;
+    console.log(this.levelWords)
+  }
 }

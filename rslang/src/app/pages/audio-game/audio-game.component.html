@@ -1,8 +1,12 @@
 <div class="audio-main-wrapper">
   <app-header></app-header>
   <div class="audio-wrapper">
-    <div class="audio-wrap-levels" *ngIf="display === 1">
-      <app-audio-game-levels></app-audio-game-levels>
+    <div class="audio-wrap-levels">
+      <app-audio-game-levels
+        *ngIf="display === 1"
+        (groupOfWords)="changeGroup($event)">
+
+      </app-audio-game-levels>
     </div>
     <div class="audio-wrap-play" *ngIf="display === 2">
       <app-audio-game-play></app-audio-game-play>
