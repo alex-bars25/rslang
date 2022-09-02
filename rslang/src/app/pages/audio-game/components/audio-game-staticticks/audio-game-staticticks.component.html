@@ -9,7 +9,6 @@
           <h3>Процент правильно указанных слов:</h3>
           <div class="pie no-round" style="--p:90;--c:purple;--b:15px"> 90%</div>
         </div>
-
           <div class="word-wrapper">
             <div class="learned">
               <h3>Всего выучено слов: ХХХ</h3>
@@ -20,7 +19,6 @@
               <span><img src="assets/thumb.svg">
                 <p>PPPP</p></span>
             </div>
-
             <div class="mistakes">
               <h3>Допущено ошибок: XXX</h3>
               <span><img src="assets/denied.png">
@@ -32,11 +30,9 @@
             </div>
           </div>
       </div>
-
       <div class="result-btns">
-      <app-btn-action [buttonTitle]="titleRepeat" [logoBook]="logoRepeat" class="btn-val"></app-btn-action>
-      <app-btn-action [buttonTitle]="titleFinish" [logoBook]="logoFinish"></app-btn-action>
+      <app-btn-action [buttonTitle]="titleRepeat" [logoBook]="logoRepeat"></app-btn-action>
+      <app-btn-action [buttonTitle]="titleFinish" [logoBook]="logoFinish" [page]="pageFinish"></app-btn-action>
       </div>
-
     </div>
   </div>

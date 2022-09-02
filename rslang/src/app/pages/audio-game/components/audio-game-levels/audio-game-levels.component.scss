@@ -1,6 +1,24 @@
 .audio-title {
-
   padding-top: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .title {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #212529;
+    opacity: .9;
+    letter-spacing: 13px;
+  }
+
+  .description {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
 
   h2 {
     color: #7a0d0d;
@@ -16,7 +34,7 @@ ul {
 
 .audio-btn {
   cursor: pointer;
-  width: 53rem;
+  width: 27rem;
   height: 2rem;
   display: block;
   font-size: 1.1em;
@@ -28,7 +46,7 @@ ul {
   background-color: #ab3838;
   background-image: linear-gradient(top, #815d5d 0%, #a49292 100%);
   border: none;
-  border-radius: 3px;
+  border-radius: 15px;
   text-shadow: 0px -1px 0px #000;
   box-shadow: 0px 1px 0px #666,0px 5px 0px #444,0px 6px 6px rgba(0, 0, 0, .6);
   transition: ease all .15s;
