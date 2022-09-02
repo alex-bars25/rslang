@@ -22,7 +22,6 @@
   flex-grow: 1;
 }
 
-
 .burger{
   width: 40px;
   height: 40px;
@@ -52,7 +51,23 @@
 
 @media (max-width: 991px) {
   .nav{
-    display: none;
+    transform: scale(0);
+    transition: all 0.6s;
+    padding-bottom: 10px;
+  }
+
+  .header { 
+    transition: all 0.6s;
+    min-height: 70px;
+  }
+
+  .active{
+    transform: scale(1) !important;
+  }
+  
+  .transform{
+    transition: all 0.6s;
+    height: 270px !important;
   }
 
   .burger{

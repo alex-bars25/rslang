@@ -1,7 +1,7 @@
-<div class="header">
+<div class="header" [ngClass]="{transform:isActive}">
   <div class="heder-wrapper">
     <h2 class="logo">RS Lang</h2>
-    <app-nav-menu class="nav"></app-nav-menu>
-    <div class="burger"></div>
+    <app-nav-menu class="nav" [ngClass]="{active:isActive}"></app-nav-menu>
+    <div class="burger" (click)="toggle()"></div>
   </div>
 </div>

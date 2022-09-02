@@ -5,6 +5,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import {AudioGameComponent} from "./pages/audio-game/audio-game.component";
 import { SprintGameComponent } from './pages/sprint-game/sprint-game.component';
 import { TextbookComponent } from './pages/textbook/textbook.component';
+import { DictionaryComponent } from './pages/dictionary/dictionary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'authorization', pathMatch: 'full' },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'audio_game', component: AudioGameComponent},
   { path: 'textbook', component: TextbookComponent },
-  { path: 'sprint', component: SprintGameComponent }
+  { path: 'sprint', component: SprintGameComponent },
+  { path: 'dictionary', component: DictionaryComponent }
 ];
 
 @NgModule({
