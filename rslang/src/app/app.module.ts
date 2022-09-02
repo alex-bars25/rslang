@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { FormsModule } from "@angular/forms";
 import { HomepageModule } from "./pages/homepage/homepage.module";
 import { AuthorizationModule } from './pages/authorization/authorization.module';
+import { TextbookModule } from './pages/textbook/textbook.module';
+import { HttpClientModule } from '@angular/common/http';
 import {AudioGameModule} from "./pages/audio-game/audio-game.module";
 
 @NgModule({
@@ -18,7 +20,9 @@ import {AudioGameModule} from "./pages/audio-game/audio-game.module";
       FormsModule,
       HomepageModule,
       AuthorizationModule,
-      AudioGameModule
+      AudioGameModule,
+      TextbookModule,
+      HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

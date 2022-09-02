@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.wrapper {
+.heder-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,7 +45,7 @@
 }
 
 @media (max-width: 1280px) {
-  .wrapper {
+  .heder-wrapper {
     width: 900px;
   }
 }
@@ -59,26 +59,26 @@
     display: block;
   }
 
-  .wrapper {
+  .heder-wrapper {
     width: 700px;
   }
 }
 
 @media (max-width: 767px) {
-  .wrapper {
+  .heder-wrapper {
     width: 550px;
   }
 }
 
 @media (max-width: 580px) {
-  .wrapper {
+  .heder-wrapper {
     padding: 0 15px;
   }
 }
 
 
 @media (max-width: 550px) {
-  .wrapper {
+  .heder-wrapper {
     width: 100%;
   }
 }
