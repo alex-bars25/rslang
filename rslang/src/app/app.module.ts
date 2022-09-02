@@ -10,6 +10,7 @@ import { TextbookModule } from './pages/textbook/textbook.module';
 import { HttpClientModule } from '@angular/common/http';
 import {AudioGameModule} from "./pages/audio-game/audio-game.module";
 import { SprintGameModule } from './pages/sprint-game/sprint-game.module';
+import { DictionaryModule } from './pages/dictionary/dictionary.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SprintGameModule } from './pages/sprint-game/sprint-game.module';
       AudioGameModule,
       TextbookModule,
       HttpClientModule,
-      SprintGameModule
+      SprintGameModule,
+      DictionaryModule
     ],
   providers: [],
   bootstrap: [AppComponent]
