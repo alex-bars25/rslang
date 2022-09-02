@@ -14,8 +14,11 @@ export class GamesBlockComponent implements OnInit {
   titleBlockGame: string = 'Вперед!'
   sprintImgLogo: string = "./assets/logo-btn-game.svg";
   audioImgLogo: string = "./assets/logo-btn-game.svg";
+  sprintPage: string;
 
-  constructor() { }
+  constructor() {
+    this.sprintPage = '/sprint';
+  }
 
   ngOnInit(): void {
   }
