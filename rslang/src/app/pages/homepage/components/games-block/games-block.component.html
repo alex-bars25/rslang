@@ -1,20 +1,21 @@
 <div class="games-block">
     <div class="tittle">
-      <img class="icon" src="../../../../../assets/game-logo.svg" alt="icon">
+      <img class="icon" src="assets/game-logo.svg" alt="icon">
       <h3>Игры</h3>
     </div>
   <div class="game-blocks">
     <app-card-block class="first-block"
       [titleCard]="titleSprintGameBlock"
       [currentImage]="imgSprintGameBlock"
-                    [titleFromBlock]="titleBlockGame"
-                    [imgFromBlock]="sprintImgLogo"
+      [titleFromBlock]="titleBlockGame"
+      [imgFromBlock]="sprintImgLogo"
+      [page]="sprintPage"
     ></app-card-block>
     <app-card-block class="second-block"
-      [titleCard]="titleAudioGameBlock"   [currentImage]="imgAudioGameBlock"
-                    [titleFromBlock]="titleBlockGame"
-                    [imgFromBlock]="audioImgLogo"
-
+      [titleCard]="titleAudioGameBlock"
+      [currentImage]="imgAudioGameBlock"
+      [titleFromBlock]="titleBlockGame"
+      [imgFromBlock]="audioImgLogo"
     ></app-card-block>
   </div>
 </div>

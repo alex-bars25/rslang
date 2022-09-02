@@ -12,20 +12,24 @@ export class NavMenuComponent implements OnInit {
   buttonColor = '#95a5a6';
   buttonTitle = 'Выход';
 
-  goToHomePage() {
+  ngOnInit(): void {
+  }
+
+  public goToHomePage() {
     this.router.navigateByUrl("/home");
   }
 
-  goToTextbookPage() {
+  public goToTextbookPage() {
     this.router.navigateByUrl("/textbook");
   }
 
-  goToLoginPage() {
+  public goToLoginPage() {
     this.router.navigateByUrl("/authorization");
     localStorage.clear();
   }
 
-  ngOnInit(): void {
+  public navigateTo(page: string) {
+    this.router.navigate([page])
   }
 
 }

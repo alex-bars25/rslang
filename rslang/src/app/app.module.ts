@@ -8,6 +8,7 @@ import { HomepageModule } from "./pages/homepage/homepage.module";
 import { AuthorizationModule } from './pages/authorization/authorization.module';
 import { TextbookModule } from './pages/textbook/textbook.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SprintGameModule } from './pages/sprint-game/sprint-game.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
       HomepageModule,
       AuthorizationModule,
       TextbookModule,
-      HttpClientModule
+      HttpClientModule,
+      SprintGameModule
     ],
   providers: [],
   bootstrap: [AppComponent]

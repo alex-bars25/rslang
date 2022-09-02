@@ -5,11 +5,13 @@
       <li class="nav-item"><a (click)="goToTextbookPage()" class="nav-link">Учебник</a></li>
       <li class="nav-item"><a href="home" class="nav-link">Словарь</a></li>
       <li class="nav-item">
-        <select class="select-nav">
-          <option value=""> <p class="option-main">Игры</p></option>
-          <option class="option-nav"><a href="#" class="nav-link">Аудиовызов</a> </option>
-          <option class="option-nav"><a href="#" class="nav-link">Спринт</a></option>
-        </select>
+        <form #f="ngForm">
+          <select class="select-nav" name="game" ngModel (change)="navigateTo(f.value.game)">
+            <option value=""><p class="option-main">Игры</p></option>
+            <option class="option-nav" value=""><span class="nav-link">Аудиовызов</span> </option>
+            <option class="option-nav" value="/sprint"><span class="nav-link">Спринт</span></option>
+          </select>
+        </form>
       </li>
       <li class="nav-item"><a href="home" class="nav-link">Статистика</a></li>
       <li class="nav-item"><a href="javascript:window.scrollTo(0,document.body.scrollHeight)" class="nav-link">О команде</a></li>
