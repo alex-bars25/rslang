@@ -6,6 +6,7 @@ import {FooterBlockModule} from "../homepage/components/footer-block/footer-bloc
 import {AudioGameLevelsModule} from "./components/audio-game-levels/audio-game-levels.module";
 import {AudioGamePlayModule} from "./components/audio-game-play/audio-game-play.module";
 import {AudioGameStaticticksModule} from "./components/audio-game-staticticks/audio-game-staticticks.module";
+import {BtnActionModule} from "../../shared/btn-action/btn-action.module";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import {AudioGameStaticticksModule} from "./components/audio-game-staticticks/au
     FooterBlockModule,
     AudioGameLevelsModule,
     AudioGamePlayModule,
-    AudioGameStaticticksModule
+    AudioGameStaticticksModule,
 
   ],
   exports: [

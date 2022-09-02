@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-audio-game-staticticks',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./audio-game-staticticks.component.scss']
 })
 export class AudioGameStaticticksComponent implements OnInit {
+
+  titleRepeat: string  = 'Повторить';
+  titleFinish: string = 'Закончить игру!';
+  logoRepeat: string = "./assets/repeat-log.svg";
+  logoFinish: string = "./assets/fin.svg"
 
   constructor() { }
 
