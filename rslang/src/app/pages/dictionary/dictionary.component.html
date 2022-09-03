@@ -1,0 +1,29 @@
+<app-page-container class='bg'>
+  <header class="wrapper">
+    <app-header></app-header>
+  </header>
+  <main>
+    <div class="main-wrapper" [ngStyle]="shadow">
+      <app-dictionary-nav (sectionInfo)="changeSection($event)"></app-dictionary-nav>
+      <hr class='line'>
+      <h2>Словарь</h2>
+      <div *ngIf="group === 0">
+        <app-diff-word-block
+          (sectionUpdate)="sectionUpdate($event)"
+          *ngFor='let word of diffWords'
+          [wordInstance]='word'
+        ></app-diff-word-block>
+      </div>
+      <div *ngIf="group === 1">
+        <app-simple-word-block
+          (sectionUpdate)="sectionUpdate($event)"
+          *ngFor='let word of studWords'
+          [wordInstance]='word'
+        ></app-simple-word-block>
+      </div>
+    </div>
+  </main>
+  <footer class="wrapper">
+    <app-footer-block></app-footer-block>
+  </footer>
+</app-page-container>

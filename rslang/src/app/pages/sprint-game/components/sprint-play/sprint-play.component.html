@@ -1,0 +1,34 @@
+<div class="header">
+  <div class="timer">{{ seconds }}</div>
+  <div class="exit" (click)="endGame()">+</div>
+</div>
+<div class="score">{{ score }}</div>
+<div
+  class="game-block"
+  [ngClass]="wrong ? 'wrong-ans' : ''"
+  [ngClass]="correct ? 'correct-ans' : ''"
+>
+  <div class="progress">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <div class="points">+{{ points }} очков за слово</div>
+  <div class="birds">
+    <div class="bird bird1"></div>
+    <div class="bird bird2"></div>
+    <div class="bird bird3"></div>
+    <div class="bird bird4"></div>
+    <div class="branch"></div>
+  </div>
+  <div class="word-en">throw</div>
+  <div class="word-ru">бросить</div>
+  <div class="answer">
+    <button class="wrong">Неверно</button>
+    <button class="correct">Верно</button>
+  </div>
+  <div class="answer-key">
+    <span class="left-arrow">←</span>
+    <span class="right-arrow">→</span>
+  </div>
+</div>

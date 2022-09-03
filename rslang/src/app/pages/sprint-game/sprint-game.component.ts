@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sprint-game.component.scss']
 })
 export class SprintGameComponent implements OnInit {
+  public gameStatus: number;
 
-  constructor() { }
+  constructor() {
+    this.gameStatus = 1;
+  }
 
   ngOnInit(): void {
   }
 
+  public getGameStatus(gameStatus: number): void {
+    this.gameStatus = gameStatus;
+  }
 }

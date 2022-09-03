@@ -28,6 +28,15 @@ export class NavMenuComponent implements OnInit {
     localStorage.clear();
   }
 
+  public goToDictionaryPage() {
+    this.router.navigateByUrl("/dictionary");
+  }
+
+  public goToAbout() {
+    this.router.navigateByUrl("/home");
+    window.scrollTo(0,document.body.scrollHeight);
+  }
+
   public navigateTo(page: string) {
     this.router.navigate([page])
   }

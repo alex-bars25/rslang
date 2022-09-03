@@ -47,7 +47,6 @@
 
 .start-button {
   color: #ffffff;
-  font-size: 1.2rem;
   padding: 10px 20px;
   margin-bottom: 20px;
   font-size: 1.5rem;
@@ -62,4 +61,15 @@
     background-color: #95a5a680;
     cursor: pointer;
   }
+}
+
+.get-ready {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+  width: 100%;
+  text-align: center;
 }

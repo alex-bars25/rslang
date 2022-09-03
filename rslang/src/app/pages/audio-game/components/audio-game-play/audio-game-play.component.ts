@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {IWord} from "../../../../../types";
 
 @Component({
@@ -6,18 +6,18 @@ import {IWord} from "../../../../../types";
   templateUrl: './audio-game-play.component.html',
   styleUrls: ['./audio-game-play.component.scss']
 })
-export class AudioGamePlayComponent implements OnInit {
+export class AudioGamePlayComponent implements OnInit, OnDestroy {
 
   @Input() wordInstance: IWord[];
   @Output() countS = new EventEmitter <number>();
-  @Output() rigthAnswerS = new EventEmitter <any>();
-  @Output() wrongAnswerS = new EventEmitter <any>();
+  @Output() rigthAnswerS = new EventEmitter <string[]>();
+  @Output() wrongAnswerS = new EventEmitter <string[]>();
 
   countAns: number = 0;
   count:number = 0;
 
-  statisticRightAnswers:any = [];
-  statisticWrongAnswers:any = [];
+  statisticRightAnswers:Array<string> = [];
+  statisticWrongAnswers:Array<string> = [];
 
   audio: HTMLAudioElement = new Audio();
   audioRightAnswer: HTMLAudioElement = new Audio();
@@ -29,9 +29,6 @@ export class AudioGamePlayComponent implements OnInit {
   autoplay: boolean = true;
 
   wordSound: string;
-  wordsAudio: IWord[];
-
-
   wordsforToggle: IWord[];
 
   copyWords: IWord[];
@@ -40,12 +37,28 @@ export class AudioGamePlayComponent implements OnInit {
 
   firstSlice:number = 0;
   secondSlice:number = 5;
+  keyAnswer: any;
 
   constructor() { }
 
+  ngOnDestroy(): void {
+        throw new Error('Method not implemented.');
+        this.onKeyUp()
+    }
+
   ngOnInit(): void {
     this.getWord();
+    this.onKeyUp()
   }
+
+  onKeyUp() {
+    document.addEventListener('keyup', (tup) => {
+      this.keyAnswer = tup.key;
+    })
+
+
+  }
+
 
   countAnswers() {
     if(this.countAns === 6) {
@@ -90,9 +103,16 @@ export class AudioGamePlayComponent implements OnInit {
       this.secondSlice += 5;
       this.sendFiveWords(this.fiveWords);
     }
+
     this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
-    this.firstSlice += 3;
-    this.secondSlice += 3;
+    this.fiveWords.map((elem, ind) => {
+      let index:number = ind;
+      index = index + 1;
+      elem.keyId = index;
+    })
+    console.log('fiveWOr,', this.fiveWords)
+    this.firstSlice += 5;
+    this.secondSlice += 5;
     this.sendFiveWords(this.fiveWords);
   }
 
@@ -120,26 +140,25 @@ export class AudioGamePlayComponent implements OnInit {
     setTimeout(changeWords, 1000)
   }
 
-  checkWord(word: string, id: string) {
+
+
+  checkWord(word: string, id: string, wordF: IWord, key?: any) {
     this.countAnswers();
     const changeWords = () => {
       if(this.count === 7) {
       }
       this.count++
       this.sliceArr(this.copyWords)
-
     }
-    setTimeout(changeWords, 1000)
+    setTimeout(changeWords, 1000);
 
     this.wordsforToggle.map(word => {
-        word.isHidden = false;
-    })
+      word.isHidden = false;
+    });
 
-    if(id) {
-      if ("id" in this.currentWord && id === this.currentWord.id) {
-        this.toggle(id);
-        this.statisticRightAnswers.push(word);
-
+    console.log('WORD', wordF)
+    if(key) {
+      if(wordF.keyId === key) {
         const play = (url: string): void => {
           this.audioRightAnswer.src = url;
           const audio = this.audioRightAnswer;
@@ -151,21 +170,43 @@ export class AudioGamePlayComponent implements OnInit {
           play(this.audioRightPath)
         }
       }
-      else {
-        this.statisticWrongAnswers.push(word);
+    }
+    else {
+      if(id) {
+        if ("id" in this.currentWord && id === this.currentWord.id) {
+          this.toggle(id);
+          this.statisticRightAnswers.push(word);
 
-        const play = (url: string): void => {
-          this.audioWrongAnswer.src = url;
-          const audio = this.audioWrongAnswer;
-          setTimeout(function () {
-            audio.play();
-          }, 150);
+          const play = (url: string): void => {
+            this.audioRightAnswer.src = url;
+            const audio = this.audioRightAnswer;
+            setTimeout(function () {
+              audio.play();
+            }, 150);
+          }
+          if(this.flagAnswer) {
+            play(this.audioRightPath)
+          }
         }
-        if(this.flagAnswer) {
-          play(this.audioWrongPath)
+        else {
+          this.statisticWrongAnswers.push(word);
+
+          const play = (url: string): void => {
+            this.audioWrongAnswer.src = url;
+            const audio = this.audioWrongAnswer;
+            setTimeout(function () {
+              audio.play();
+            }, 150);
+          }
+          if(this.flagAnswer) {
+            play(this.audioWrongPath)
+          }
         }
       }
+
     }
+
+
   }
 
   sound() {

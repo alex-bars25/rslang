@@ -16,7 +16,8 @@ export interface IWord {
   "wordTranslate": "string",
   "textMeaningTranslate": "string",
   "textExampleTranslate": "string",
-  "isHidden"?:boolean
+  "isHidden"?:boolean,
+  "keyId"?: number;
 }
 
 export interface User {
@@ -33,3 +34,8 @@ export interface LoggedUser {
   name: string;
 }
 
+export interface userWord {
+difficulty: string,
+id: string,
+wordId: string
+}

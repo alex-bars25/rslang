@@ -1,3 +1,6 @@
+<app-header></app-header>
 <div class="wrapper">
-  <app-sprint-intro></app-sprint-intro>
+  <app-sprint-intro *ngIf="gameStatus === 1" (gameStatus)="getGameStatus($event)"></app-sprint-intro>
+  <app-sprint-play *ngIf="gameStatus === 2" (gameStatus)="getGameStatus($event)"></app-sprint-play>
+  <app-sprint-results *ngIf="gameStatus === 3" (gameStatus)="getGameStatus($event)"></app-sprint-results>
 </div>

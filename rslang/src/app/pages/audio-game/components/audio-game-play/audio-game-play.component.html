@@ -9,7 +9,7 @@
       <div class="answer-item"
            *ngFor="let word of fiveWords;
            index as i"
-           (click)="checkWord(word.wordTranslate, word.id)"
+           (click)="checkWord(word.wordTranslate, word.id, word)"
            [class.isHidden]="word.isHidden"
       >
         <div class="item-number" [attr.data-index]="i + 1">{{i+1}}</div>
