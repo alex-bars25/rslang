@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sprint-game.component.scss']
 })
 export class SprintGameComponent implements OnInit {
+  isStarted: boolean;
 
-  constructor() { }
+  constructor() {
+    this.isStarted = true;
+  }
 
   ngOnInit(): void {
   }
 
+  public getGameStatus(isStarted: boolean): void {
+    this.isStarted = isStarted;
+  }
 }
