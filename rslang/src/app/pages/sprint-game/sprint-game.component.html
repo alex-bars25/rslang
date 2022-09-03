@@ -1,3 +1,4 @@
 <div class="wrapper">
-  <app-sprint-intro></app-sprint-intro>
+  <app-sprint-intro *ngIf="!isStarted" (isStarted)="getGameStatus($event)"></app-sprint-intro>
+  <app-sprint-play *ngIf="isStarted" (isStarted)="getGameStatus($event)"></app-sprint-play>
 </div>

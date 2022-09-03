@@ -1,0 +1,191 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  color: #ffffff;
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+
+.exit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1rem;
+  width: 1rem;
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 1rem;
+  transform: rotate(45deg);
+  color: #f1f1f1;
+  
+  &:hover {
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.game-block {
+  margin: 0 auto;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 450px;
+  border: 1px solid #ffffff;
+  border-radius: 0.5rem;
+  background: #ffffff29;
+  transition: all 0.2s;
+}
+
+.progress {
+  display: flex;
+  gap: 1rem;
+}
+
+.circle {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #6b6b6b;
+}
+
+.points {
+  color: #474747;
+}
+
+.birds {
+  display: flex;
+  height: 64px;
+  position: relative;
+  width: 204px;
+}
+
+.bird{
+  position: absolute;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.bird1 {
+  background-image: url('../../../../../assets/bird1.svg');
+  left: 0;
+  bottom: -2px;
+  height: 63px;
+  width: 54px;
+}
+
+.bird2 {
+  background-image: url('../../../../../assets/bird2.svg');
+  left: 56px;
+  bottom: 1px;
+  height: 52px;
+  width: 54px;
+}
+
+.bird3 {
+  background-image: url('../../../../../assets/bird3.svg');
+  right: 48px;
+  bottom: -3px;
+  height: 58px;
+  width: 44px;
+}
+
+.bird4 {
+  background-image: url('../../../../../assets/bird4.svg');
+  right: 0;
+  bottom: -3px;
+  height: 65px;
+  width: 45px;
+}
+
+.branch {
+  background-image: url('../../../../../assets/branch.svg');
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 6px;
+  width: 204px;
+}
+
+.word-en {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+.word-ru {
+  color: #ffffffce;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.answer {
+  display: flex;
+  gap: 2rem;
+  
+  & > * {
+    border-radius: 0.2rem;
+    color: #ffffff;
+    font-size: 1.5rem;
+    height: 50px;
+    border: none;
+    width: 180px;
+  }
+}
+
+.wrong {
+  background: #ed593b;
+
+  &:hover {
+    background: #d34d32;
+    cursor: pointer;
+  }
+}
+
+.correct {
+  background: #28c38a;
+  
+  &:hover {
+    background: #23aa78;
+    cursor: pointer;
+  }
+}
+
+.answer-key {
+  display: flex;
+  gap: 12rem;
+  font-size: 1.5rem;
+  line-height: 0.5;
+  color: #ffffffb9;
+}
+
+.wrong-ans {
+  background: #ed593b46;
+  border: 1px solid #ed593b;
+}
+
+.correct-ans {
+  background: #28c38a46;
+  border: 1px solid #28c38a;
+}
