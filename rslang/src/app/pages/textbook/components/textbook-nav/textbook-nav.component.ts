@@ -18,6 +18,7 @@ export class TextbookNavComponent implements OnInit {
     this.sectionInfo.emit([color, group]);
     this.isActive = [false, false, false, false, false, false];
     this.isActive[group] = true;
+    localStorage.setItem('page', '1');
   } 
 
   public goToSprintPage() {
@@ -33,6 +34,10 @@ export class TextbookNavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('group')) {
+      this.isActive = [false, false, false, false, false, false];
+      this.isActive[+localStorage.getItem('group')!] = true;
+    }
   }
 
 }
