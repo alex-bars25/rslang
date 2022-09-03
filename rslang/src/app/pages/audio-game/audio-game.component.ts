@@ -13,12 +13,22 @@ export class AudioGameComponent implements OnInit {
   display:number = 1;
   group: number;
   words: IWord[] | [] = [];
+  rightAnswersForStatistic: any;
+  wrongAnswersForStatistic: any;
 
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
   }
 
+
+  forRigthAnswers(answers: any) {
+    this.rightAnswersForStatistic = answers;
+  }
+
+  forWrongAnswers(answers:any) {
+    this.wrongAnswersForStatistic = answers;
+  }
 
   changeGroup(group:number) {
     const page: number = Math.ceil(Math.random() * 29 - 1);
@@ -27,10 +37,7 @@ export class AudioGameComponent implements OnInit {
   }
 
   countCheck(count:number) {
-    const display3 = () => this.display = 3
-    if(count === 6) {
-      setTimeout(display3, 1000);
-    }
+      this.display = 3;
   }
 
   getLevelWords(group:number, page: number): void {
@@ -40,4 +47,9 @@ export class AudioGameComponent implements OnInit {
       });
   }
 
+  repeatGame(value: boolean) {
+    if(value) {
+      this.display = 1;
+    }
+  }
 }

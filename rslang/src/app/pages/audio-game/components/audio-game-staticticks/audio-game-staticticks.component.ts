@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-audio-game-staticticks',
@@ -14,9 +14,27 @@ export class AudioGameStaticticksComponent implements OnInit {
   pageRepeat: string = "/audio_game";
   pageFinish: string = '/home';
 
+  lengthProcent:number;
+
+
+  repeatGameAgain:boolean = false;
+
+  @Input() rightAnswers: Array <string>;
+  @Input() wrongAnswers: Array<string>;
+  @Output() repeatGameS = new EventEmitter <boolean>()
+
   constructor() { }
 
   ngOnInit(): void {
+    this.createStatistick();
   }
 
+  createStatistick() {
+    this.lengthProcent = this.rightAnswers.length * 14
+  }
+
+  repeatGame() {
+    this.repeatGameAgain = true;
+    this.repeatGameS.emit(this.repeatGameAgain)
+  }
 }
