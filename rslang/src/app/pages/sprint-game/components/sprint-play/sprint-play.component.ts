@@ -9,8 +9,8 @@ import { interval, take } from 'rxjs';
 })
 export class SprintPlayComponent implements OnInit {
   @Output()
-  isStarted: EventEmitter<boolean>;
-
+  gameStatus: EventEmitter<number>;
+  
   public seconds: number;
   public score: number;
   public points: number;
@@ -18,7 +18,7 @@ export class SprintPlayComponent implements OnInit {
   public correct: boolean;
 
   constructor(private router: Router) {
-    this.isStarted = new EventEmitter<boolean>();
+    this.gameStatus = new EventEmitter<number>();
     this.seconds = 60;
     this.score = 0;
     this.points = 10;
@@ -33,7 +33,12 @@ export class SprintPlayComponent implements OnInit {
   private countdown(): void {
     interval(1000)
       .pipe(take(60))
-      .subscribe(() => this.seconds -= 1);
+      .subscribe(() => {
+        this.seconds--;
+        if (!this.seconds) {
+          this.gameStatus.emit(3);
+        }
+      });
   }
 
   public endGame(): void {
