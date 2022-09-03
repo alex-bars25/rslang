@@ -20,6 +20,9 @@
       <app-word-block
         *ngFor='let word of words'
         [wordInstance]='word'
+        [createDiffWord]='createDiffWord'
+        [createStudWord]='createStudWord'
+        [updateToStudWord]='updateToStudWord'
       ></app-word-block>
     </div>
   </main>
