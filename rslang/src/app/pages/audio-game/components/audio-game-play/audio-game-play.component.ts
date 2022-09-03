@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IWord} from "../../../../../types";
 
 @Component({
@@ -9,12 +9,21 @@ import {IWord} from "../../../../../types";
 export class AudioGamePlayComponent implements OnInit {
 
   @Input() wordInstance: IWord[];
+  @Output() countS = new EventEmitter <number>();
 
-  count: number = 0;
-  statisticRightAnswers: IWord[] = [];
+  countAns: number = 0;
+  count:number = 0;
+
+  statisticRightAnswers:any = [];
   statisticWrongAnswers: IWord[] = [];
 
   audio: HTMLAudioElement = new Audio();
+  audioRightAnswer: HTMLAudioElement = new Audio();
+  audioRightPath: string = './assets/rigthanswe.mp3'
+  audioWrongAnswer: HTMLAudioElement = new Audio();
+  audioWrongPath: string = './assets/mistake.mp3'
+
+  flagAnswer: boolean = true;
   autoplay: boolean = true;
 
   wordSound: string;
@@ -34,6 +43,17 @@ export class AudioGamePlayComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWord();
+  }
+
+  countAnswers() {
+    if(this.countAns === 7) {
+      this.countS.emit(this.countAns);
+
+      console.log(this.statisticWrongAnswers, 'RIGHR');
+    }
+    console.log(this.countAns)
+    this.countAns++;
+
   }
 
   getWord() {
@@ -57,8 +77,11 @@ export class AudioGamePlayComponent implements OnInit {
       this.firstSlice = 0;
       this.secondSlice = 5;
       words.sort((a,b) =>{
-        if(a.word > b.word) {
+        if(a.word < b.word) {
           return 1;
+        }
+        if(a.word > b.word) {
+          return -1;
         }
         return 0;
       })
@@ -92,24 +115,55 @@ export class AudioGamePlayComponent implements OnInit {
     })
   }
 
-  checkWord(word: string, id: string) {
-    const changeWords = () => this.sliceArr(this.copyWords)
+  notToKnow() {
+    const changeWords = () => {
+      this.sliceArr(this.copyWords)
+    }
+    setTimeout(changeWords, 1000)
+  }
 
+  checkWord(word: string, id: string) {
+    this.countAnswers();
+    const changeWords = () => {
+      if(this.count === 7) {
+      }
+      this.count++
+      this.sliceArr(this.copyWords)
+
+    }
     setTimeout(changeWords, 1000)
 
     if(id) {
       if ("id" in this.currentWord && id === this.currentWord.id) {
-        console.log('Yeah')
-        console.log(id);
-        this.toggle(id)
-        this.statisticRightAnswers.push();
+        this.toggle(id);
+        this.statisticRightAnswers.push(word);
+
+
+        const play = (url: string): void => {
+          this.audioRightAnswer.src = url;
+          const audio = this.audioRightAnswer;
+          setTimeout(function () {
+            audio.play();
+          }, 150);
+        }
+        if(this.flagAnswer) {
+          play(this.audioRightPath)
+        }
       }
       else {
-        console.log('no')
+        const play = (url: string): void => {
+          this.audioWrongAnswer.src = url;
+          const audio = this.audioWrongAnswer;
+          setTimeout(function () {
+            audio.play();
+          }, 150);
+        }
+        if(this.flagAnswer) {
+          play(this.audioWrongPath)
+        }
         this.statisticWrongAnswers.push();
       }
     }
-
   }
 
   sound() {

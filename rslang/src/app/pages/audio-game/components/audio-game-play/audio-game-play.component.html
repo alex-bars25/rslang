@@ -13,12 +13,12 @@
            [class.isHidden]="word.isHidden"
       >
         <div class="item-number" [attr.data-index]="i + 1">{{i+1}}</div>
-        <span class="item-word">{{word.wordTranslate}}</span>
+        <span class="item-word" >{{word.wordTranslate}}</span>
         <span class="item-block-word"></span>
       </div>
     </div>
   <div class="follow-btn">
-    <button type="button" (click)="getWord()">
+    <button type="button" (click)="notToKnow()">
       <span class="btn-follow">Не знаю</span>
       <span class="btn-block-word"></span>
     </button>

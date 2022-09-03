@@ -9,6 +9,7 @@ import {IWord} from "../../../types";
 })
 export class AudioGameComponent implements OnInit {
 
+  count: number = 1;
   display:number = 1;
   group: number;
   words: IWord[] | [] = [];
@@ -25,6 +26,12 @@ export class AudioGameComponent implements OnInit {
     this.display = 2;
   }
 
+  countCheck(count:number) {
+    const display3 = () => this.display = 3
+    if(count === 6) {
+      setTimeout(display3, 1000);
+    }
+  }
 
   getLevelWords(group:number, page: number): void {
     this.api.getWords(group, page)

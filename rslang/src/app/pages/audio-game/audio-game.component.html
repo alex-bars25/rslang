@@ -8,8 +8,11 @@
       </app-audio-game-levels>
     </div>
     <div class="audio-wrap-play"
-         *ngIf="display === 2">
-      <app-audio-game-play [wordInstance]="words"
+         *ngIf="display === 2"
+    >
+      <app-audio-game-play
+        [wordInstance]="words"
+        (countS)="countCheck($event)"
       ></app-audio-game-play>
     </div>
         <div class="audio-wrap-statist"
