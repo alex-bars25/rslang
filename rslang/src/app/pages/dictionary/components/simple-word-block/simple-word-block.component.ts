@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IWord } from '../../../../../types/index';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-simple-word-block',
@@ -8,7 +9,13 @@ import { IWord } from '../../../../../types/index';
 })
 export class SimpleWordBlockComponent implements OnInit {
 
+  constructor(private api: ApiService) {}
+
   @Input() wordInstance!: IWord;
+
+  @Output() sectionUpdate = new EventEmitter<number>();
+
+  userId: string = localStorage.getItem('userId')!;
   
   word: string;
 
@@ -18,7 +25,12 @@ export class SimpleWordBlockComponent implements OnInit {
   }
 
   excludedFromStud() {
-    // excludedFromStud
+    this.api.deleteUserWord(this.userId, this.wordInstance.id).subscribe({
+      complete: () => {
+        this.sectionUpdate.emit(1);
+      }
+  });
+
   }
 
   ngOnInit(): void {

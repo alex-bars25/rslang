@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { IWord } from '../../../../../types/index';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-diff-word-block',
@@ -8,7 +9,11 @@ import { IWord } from '../../../../../types/index';
 })
 export class DiffWordBlockComponent implements OnInit {
   
+  constructor(private api: ApiService) {}
+
   @Input() wordInstance!: IWord;
+
+  userId: string = localStorage.getItem('userId')!;
 
   audioLogo: string = "./assets/volume_Icon.svg";
   audio: HTMLAudioElement = new Audio();
@@ -74,12 +79,30 @@ export class DiffWordBlockComponent implements OnInit {
     }
   }
 
-  excludedFromDiff() {
-    // excludedFromDiff
+  updateToStudWord: (wordId: string) => void  = (wordId): void => {
+    this.api.updateUserWord(this.userId, wordId, 
+    { "difficulty": "false", "optional": {}}
+    ).subscribe({
+      complete: () => {
+        this.sectionUpdate.emit(0);
+      }
+  });
   }
 
+  excludedFromDiff()  {
+    this.api.deleteUserWord(this.userId, this.wordInstance.id).subscribe({
+      complete: () => {
+        this.sectionUpdate.emit(0);
+      }
+  });
+  }
+
+  @Output() sectionUpdate = new EventEmitter<number>();
+
   putToStud() {
-    // put to StudiesWords
+    if (this.displayText === 'СЛОЖНОЕ') {
+      this.updateToStudWord(this.wordInstance.id);
+    }
   }
 
   ngOnInit(): void {

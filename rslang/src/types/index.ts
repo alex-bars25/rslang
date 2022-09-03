@@ -32,3 +32,8 @@ export interface LoggedUser {
   name: string;
 }
 
+export interface userWord {
+difficulty: string,
+id: string,
+wordId: string
+}
