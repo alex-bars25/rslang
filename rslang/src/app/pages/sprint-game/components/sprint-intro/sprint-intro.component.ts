@@ -8,7 +8,7 @@ import { interval, take } from 'rxjs';
 })
 export class SprintIntroComponent implements OnInit {
   @Output()
-  isStarted: EventEmitter<boolean>;
+  gameStatus: EventEmitter<number>;
   
   public level: number;
   public startClicked: boolean;
@@ -18,7 +18,7 @@ export class SprintIntroComponent implements OnInit {
   public whistle: HTMLAudioElement;
 
   constructor() {
-    this.isStarted = new EventEmitter<boolean>();
+    this.gameStatus = new EventEmitter<number>();
     this.level = 1;
     this.startClicked = false;
     this.getReady = ['На старт!', 'Внимание!', 'Марш!'];
@@ -47,7 +47,7 @@ export class SprintIntroComponent implements OnInit {
         this.bip.play();
       });
     setTimeout(() => {
-      this.isStarted.emit(true);
+      this.gameStatus.emit(2);
       this.whistle.play();
     }, 4000);
   }
