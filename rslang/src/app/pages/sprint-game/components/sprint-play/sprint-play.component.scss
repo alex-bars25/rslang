@@ -66,6 +66,23 @@
   height: 1.5rem;
   border-radius: 50%;
   background: #6b6b6b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.streak {
+  background: #28c38a;
+
+  &:after {
+    content: '✔';
+    color: #ffffff;
+    line-height: 0;
+  }
+}
+
+.hide {
+  visibility: hidden;
 }
 
 .points {

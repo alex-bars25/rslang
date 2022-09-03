@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { interval, take } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
+import { SprintService } from 'src/app/services/sprint.service';
+import { IWord } from 'src/types';
 
 @Component({
   selector: 'app-sprint-intro',
@@ -17,7 +20,7 @@ export class SprintIntroComponent implements OnInit {
   public bip: HTMLAudioElement;
   public whistle: HTMLAudioElement;
 
-  constructor() {
+  constructor(private sprintService: SprintService, private api: ApiService) {
     this.gameStatus = new EventEmitter<number>();
     this.level = 1;
     this.startClicked = false;
@@ -50,6 +53,15 @@ export class SprintIntroComponent implements OnInit {
       this.gameStatus.emit(2);
       this.whistle.play();
     }, 4000);
+    this.getWords();
+  }
+
+  private getWords(): void {
+    for (let page = 0; page < 30; page++) {
+      this.api.getWords(this.level - 1, page).subscribe((words: IWord[]) => {
+        this.sprintService.words.push(...words);
+      });  
+    }
   }
 
 }
