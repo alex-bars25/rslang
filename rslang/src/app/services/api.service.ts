@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoggedUser, User, IWord } from 'src/types';
+import { LoggedUser, User, IWord, userWord } from 'src/types';
 
 
 @Injectable({
@@ -44,5 +44,52 @@ export class ApiService {
     )
   }
 
+  public getWord(wordId: string): Observable<IWord> {
+    return this.http.get<IWord>(
+      `https://app-learnwords-rslang.herokuapp.com/words/${wordId}`
+    )
+  }
+
+  public createUserWord(userId: string, wordId: string, word: object): Observable<object> {
+    const myHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.post<object>(
+      `https://app-learnwords-rslang.herokuapp.com/users/${userId}/words/${wordId}`,
+        word,
+      {headers:myHeaders}
+    )
+  }
+
+  public updateUserWord(userId: string, wordId: string, word: object): Observable<object> {
+    const myHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.put<object>(
+      `https://app-learnwords-rslang.herokuapp.com/users/${userId}/words/${wordId}`,
+        word,
+      {headers:myHeaders}
+    )
+  }
+
+  public deleteUserWord(userId: string, wordId: string): Observable<object> {
+    const myHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.delete<object>(
+      `https://app-learnwords-rslang.herokuapp.com/users/${userId}/words/${wordId}`,
+      {headers:myHeaders}
+    )
+  }
+
+  public getUserWords(userId: string): Observable<userWord[]> {
+    const myHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<userWord[]>(
+      `https://app-learnwords-rslang.herokuapp.com/users/${userId}/words`,
+      {headers:myHeaders}
+    )
+  }
+
+  public getUserWord(userId: string, wordId: string): Observable<userWord> {
+    const myHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<userWord>(
+      `https://app-learnwords-rslang.herokuapp.com/users/${userId}/words/${wordId}`,
+      {headers:myHeaders}
+    )
+  }
 
 }
