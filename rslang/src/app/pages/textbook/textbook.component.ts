@@ -42,19 +42,19 @@ export class TextbookComponent implements OnInit {
     createDiffWord: (wordId: string) => void  = (wordId): void => {
       this.api.createUserWord(this.userId, wordId, 
       { "difficulty": "true", "optional": {}}
-      ).subscribe((word: object) => console.log(word));
+      ).subscribe();
     }
 
     createStudWord: (wordId: string) => void  = (wordId): void => {
       this.api.createUserWord(this.userId, wordId, 
       { "difficulty": "false", "optional": {}}
-      ).subscribe((word: object) => console.log(word));
+      ).subscribe();
     }
 
     updateToStudWord: (wordId: string) => void  = (wordId): void => {
       this.api.updateUserWord(this.userId, wordId, 
       { "difficulty": "false", "optional": {}}
-      ).subscribe((word: object) => console.log(word));
+      ).subscribe();
     }
 
   ngOnInit(): void {
