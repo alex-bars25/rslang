@@ -8,25 +8,27 @@ import {IWord} from "../../../../../types";
 })
 export class AudioGamePlayComponent implements OnInit {
 
-  @Input() wordInstance!: IWord[];
+  @Input() wordInstance: IWord[];
 
   count: number = 0;
-  visibility: boolean = true;
-  rightV: boolean = true;
-
-  statisticRightAnswers: Array<string> = [];
-  statisticWrongAnswers: Array<string> = [];
+  statisticRightAnswers: IWord[] = [];
+  statisticWrongAnswers: IWord[] = [];
 
   audio: HTMLAudioElement = new Audio();
   autoplay: boolean = true;
 
-  wordRightDisp: IWord[];
   wordSound: string;
   wordsAudio: IWord[];
 
-  onlyRightW: string;
 
+  wordsforToggle: IWord[];
 
+  copyWords: IWord[];
+  fiveWords: IWord[];
+  currentWord:IWord | {} = {};
+
+  firstSlice:number = 0;
+  secondSlice:number = 5;
 
   constructor() { }
 
@@ -36,42 +38,78 @@ export class AudioGamePlayComponent implements OnInit {
 
   getWord() {
     setTimeout(() => {
-      this.wordsAudio = this.wordInstance;
-      this.updateBlock(this.wordsAudio)
+      this.createBlock(this.wordInstance)
     }, 1000)
   }
 
-  updateBlock(words: IWord[]) {
-    let copyArr: IWord[] =  [...words];
-
-    copyArr = copyArr.sort((a,b) =>{
-      if(a.word > b.word) {
-        return 1;
-      }
-      if(a.word < b.word) {
-        return -1;
-      }
-      return 0;
+  createBlock(words: IWord[]) {
+    this.copyWords = [...words];
+    this.copyWords.map(elem => {
+      elem.isHidden = false;
     })
-    const curArr = copyArr.slice(0,5);
-    const rightWord = curArr[3];
-    this.onlyRightW = rightWord.wordTranslate;
-    this.wordSound = `https://app-learnwords-rslang.herokuapp.com/${rightWord.audio}`;
-    this.sound();
-    this.wordRightDisp = curArr;
+
+    this.wordsforToggle = [...this.copyWords];
+    this.sliceArr(this.copyWords)
   }
 
-  checkWord(word: string, i: number) {
-
-    if (word === this.onlyRightW) {
-      console.log('WWWw')
-      this.statisticRightAnswers.push(word);
-
+  sliceArr(words:IWord[]) {
+    if(this.secondSlice > 19) {
+      this.firstSlice = 0;
+      this.secondSlice = 5;
+      words.sort((a,b) =>{
+        if(a.word > b.word) {
+          return 1;
+        }
+        return 0;
+      })
+      this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
+      this.firstSlice += 3;
+      this.secondSlice += 3;
+      console.log(this.fiveWords,' FIVE')
+      this.sendFiveWords(this.fiveWords);
     }
-    else {
-      this.visibility = false;
-      this.statisticWrongAnswers.push(word);
+    this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
+    this.firstSlice += 3;
+    this.secondSlice += 3;
+    console.log(this.fiveWords,' FIVE')
+    this.sendFiveWords(this.fiveWords);
+  }
+
+
+  sendFiveWords(words: IWord[]) {
+    const rightWord = words[Math.floor(Math.random() * 5)];
+    this.currentWord = rightWord;
+    this.wordSound = `https://app-learnwords-rslang.herokuapp.com/${rightWord.audio}`;
+    this.sound();
+  }
+
+
+  toggle(id: string) {
+    this.wordsforToggle.map(word => {
+      if(word.id === id) {
+        word.isHidden = true;
+      }
+    })
+  }
+
+  checkWord(word: string, id: string) {
+    const changeWords = () => this.sliceArr(this.copyWords)
+
+    setTimeout(changeWords, 1000)
+
+    if(id) {
+      if ("id" in this.currentWord && id === this.currentWord.id) {
+        console.log('Yeah')
+        console.log(id);
+        this.toggle(id)
+        this.statisticRightAnswers.push();
+      }
+      else {
+        console.log('no')
+        this.statisticWrongAnswers.push();
+      }
     }
+
   }
 
   sound() {

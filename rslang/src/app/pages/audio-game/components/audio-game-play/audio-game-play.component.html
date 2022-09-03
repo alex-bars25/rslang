@@ -5,13 +5,12 @@
         <img src="../../../../../assets/Sound-Icon.svg" alt="logo" class="logo-audio">
       </button>
     </div>
-    <div class="answers-btns">
+    <div class="answers-btns" *ngIf="fiveWords">
       <div class="answer-item"
-           [style.display]="visibility === true ? 'block' : 'none'"
-           [style.display]="rightV === true ? 'block' : 'none'"
-           *ngFor="let word of wordRightDisp;
+           *ngFor="let word of fiveWords;
            index as i"
-           (click)="checkWord(word.wordTranslate, i)"
+           (click)="checkWord(word.wordTranslate, word.id)"
+           [class.isHidden]="word.isHidden"
       >
         <div class="item-number" [attr.data-index]="i + 1">{{i+1}}</div>
         <span class="item-word">{{word.wordTranslate}}</span>

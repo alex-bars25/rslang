@@ -15,7 +15,8 @@ export interface IWord {
   "transcription": "string",
   "wordTranslate": "string",
   "textMeaningTranslate": "string",
-  "textExampleTranslate": "string"
+  "textExampleTranslate": "string",
+  "isHidden"?:boolean
 }
 
 export interface User {
