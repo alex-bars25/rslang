@@ -24,6 +24,9 @@ export class SprintResultsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.updateWrongAnswers();
+    this.updateCorrectAnswers();
+    this.updateRecord();
   }
 
   public newGame(): void {
@@ -38,4 +41,20 @@ export class SprintResultsComponent implements OnInit {
     let sound = new Audio(`https://app-learnwords-rslang.herokuapp.com/${audio}`);
     sound.play();
   }
+
+  private updateWrongAnswers() {
+    localStorage.setItem('falseAnswersS', `${(+localStorage.getItem('falseAnswersS')! || 0) + this.wrongAnswers.length}`);
+  }
+
+  private updateCorrectAnswers() {
+    localStorage.setItem('trueAnswersS', `${(+localStorage.getItem('trueAnswersS')! || 0) + this.correctAnswers.length}`);
+  }
+
+  private updateRecord() {
+    const record: number = +localStorage.getItem('recordS')! || 0;
+    if (!record || record < this.score) {
+      localStorage.setItem('recordS', `${this.score}`);
+    }
+  }
+
 }

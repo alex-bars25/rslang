@@ -1,4 +1,4 @@
-<div class="intro" *ngIf="!startClicked">
+<div class="intro">
   <h2 class="title">СПРИНТ</h2>
   <p class="description">Истинная гонка на проверку знаний.<br>Укажите, верно ли указан перевод слова?</p>
   <div class="level">
@@ -9,4 +9,3 @@
   </div>
   <button class="start-button" (click)="startGame()">НАЧАТЬ</button>
 </div>
-<p class="get-ready" *ngIf="startClicked">{{ phrase }}</p>
