@@ -46,12 +46,13 @@ export class SprintPlayComponent implements OnInit {
   public streak: number;
   public firstCircle: boolean;
   private prevWord: IWord[];
+  private userWords: userWord[];
 
   constructor(private router: Router, private api: ApiService, private sprintService: SprintService) {
     this.gameStatus = new EventEmitter<number>();
     this.isReady = false;
     this.getReady = ['На старт!', 'Внимание!', 'Марш!'];
-    this.phrase = 'Приготовтесь!';
+    this.phrase = 'Приготовься!';
     this.bip = new Audio('assets/voices/bip.mp3');
     this.whistle = new Audio('assets/voices/whistle.mp3');
     this.seconds = 60;
@@ -76,14 +77,14 @@ export class SprintPlayComponent implements OnInit {
         this.bip.play();
       });
     setTimeout(() => {
-      this.words = this.sprintService.words;
-      this.word = this.words[0];  
       this.whistle.play();
       this.isReady = true;
       this.countdown();
       this.getRandomWord();
       this.getRandomTranslate();
     }, 4000);
+    this.words = this.sprintService.words;
+    this.userWords = this.sprintService.userWords;    
   }
 
   private countdown(): void {
@@ -137,8 +138,7 @@ export class SprintPlayComponent implements OnInit {
     }
     this.getRandomWord();
     this.getRandomTranslate();
-    console.log(this.prevWord);
-
+    console.log(this.words.length);
     
   }
 
@@ -161,18 +161,14 @@ export class SprintPlayComponent implements OnInit {
       this.points *= 2;
       this.gongSound.play();
     }
-    this.api.getUserWord(localStorage.getItem('userId')!, this.prevWord[0].id).subscribe({
-      error: () => {
-        this.api.createUserWord(localStorage.getItem('userId')!, this.prevWord[0].id, {difficulty: 'false', optional: {}}).subscribe();
-        this.updateStudiedWords(true);
-      },
-      next: (word: userWord) => {
-        if (word.difficulty === 'true') {
-          this.api.updateUserWord(localStorage.getItem('userId')!, this.prevWord[0].id, {difficulty: 'false', optional: {}}).subscribe();
-          this.updateStudiedWords(true);
-        }
-      }
-    });
+    let userWord = this.userWords.find((word: userWord) => word.wordId === this.prevWord[0].id);
+    if (!userWord) {
+      this.api.createUserWord(localStorage.getItem('userId')!, this.prevWord[0].id, {difficulty: 'false', optional: {}}).subscribe();
+      this.updateStudiedWords(true);
+    } else if (userWord.difficulty === 'true') {
+      this.api.updateUserWord(localStorage.getItem('userId')!, this.prevWord[0].id, {difficulty: 'false', optional: {}}).subscribe();
+      this.updateStudiedWords(true);
+    }
   }
 
   private wrongAnswer(): void {
@@ -182,17 +178,13 @@ export class SprintPlayComponent implements OnInit {
     this.wrongAnswers.push(this.word);
     this.streak = 0;
     this.points = 10;
-    this.api.getUserWord(localStorage.getItem('userId')!, this.prevWord[0].id).subscribe({
-      error: () => {
-        this.api.createUserWord(localStorage.getItem('userId')!, this.prevWord[0].id, {difficulty: 'true', optional: {}}).subscribe();
-      },
-      next: (word: userWord) => {
-        if (word.difficulty === 'false') {
-          this.api.deleteUserWord(localStorage.getItem('userId')!, this.prevWord[0].id).subscribe();
-          this.updateStudiedWords(false);
-        }
-      }
-    });
+    let userWord = this.userWords.find((word: userWord) => word.wordId === this.prevWord[0].id);
+    if (!userWord) {
+      this.api.createUserWord(localStorage.getItem('userId')!, this.prevWord[0].id, {difficulty: 'true', optional: {}}).subscribe();
+    } else if (userWord.difficulty === 'false') {
+      this.api.deleteUserWord(localStorage.getItem('userId')!, this.prevWord[0].id).subscribe();
+      this.updateStudiedWords(false);
+    }
   }
 
   private updateStudiedWords(add: boolean) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IWord } from 'src/types';
+import { IWord, userWord } from 'src/types';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,13 @@ export class SprintService {
   public wrongAnswers: IWord[];
   public correctAnswers: IWord[];
   public score: number;
+  public userWords: userWord[];
 
   constructor() {
     this.words = [];
     this.wrongAnswers = [];
     this.correctAnswers = [];
     this.score = 0;
+    this.userWords = [];
   }
 }
