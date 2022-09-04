@@ -49,9 +49,11 @@ export class AudioGameComponent implements OnInit {
     this.api.getWords(group, page)
       .subscribe((resp:IWord[]) =>  {
         this.words = resp;
+        console.log(resp, 'REP')
         this.AudioService.wordForAudio.push(...resp)
       });
   }
+
 
   userWords() {
     this.api.getUserWords(localStorage.getItem('userId')!).subscribe((data) => {

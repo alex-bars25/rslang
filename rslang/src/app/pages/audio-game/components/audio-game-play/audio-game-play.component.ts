@@ -24,8 +24,8 @@ export class AudioGamePlayComponent implements OnInit {
     }
   }
 
-  wordsFromService: IWord[];
-  userWordsFromService: userWord[];
+  public wordsFromService: IWord[];
+  public userWordsFromService: userWord[];
 
   keyObj: IWord | [] = [];
   countAns: number = 0;
@@ -52,15 +52,11 @@ export class AudioGamePlayComponent implements OnInit {
 
   ngOnInit(): void {
     this.wordsFromService = this.AudioService.wordForAudio;
-    console.log(this.wordsFromService)
-
     this.userWordsFromService = this.AudioService.userWords;
     this.createBlock(this.wordsFromService);
-
-
   }
 
-  countAnswers() {
+  public countAnswers() {
     if(this.countAns === 6) {
       this.countS.emit(this.countAns);
       this.rigthAnswerS.emit(this.statisticRightAnswers);
@@ -69,7 +65,7 @@ export class AudioGamePlayComponent implements OnInit {
     this.countAns++;
   }
 
-  createBlock(words: IWord[]) {
+  public createBlock(words: IWord[]) {
     words.map(elem => {
       elem.isHidden = false;
     });
@@ -77,27 +73,17 @@ export class AudioGamePlayComponent implements OnInit {
     this.sliceArr(words)
   }
 
-  sliceArr(words:IWord[]) {
-
-    this.firstSlice = 0;
-    this.secondSlice = 5;
-    console.log(words.slice(0,4),'WoRds')
-
-    this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
-
-    // for (let i = this.firstSlice; i < this.secondSlice; i++) {
-    //   this.fiveWords.push(words[i])
-    // }
-    console.log('five', this.fiveWords)
-
-    this.sendFiveWords(this.fiveWords);
-
+  public sliceArr(words:IWord[]) {
+    const sliceAA = () => {
+      this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
+      this.sendFiveWords(this.fiveWords);
+    }
+    setTimeout(sliceAA, 1000)
     this.firstSlice += 5;
     this.secondSlice += 5;
-
   }
 
-  sendFiveWords(words: IWord[]) {
+  public sendFiveWords(words: IWord[]) {
     const rightWord = words[Math.floor(Math.random() * 5)];
     this.currentWord = rightWord;
     this.wordSound =  `https://app-learnwords-rslang.herokuapp.com/${rightWord.audio}`;
@@ -106,7 +92,7 @@ export class AudioGamePlayComponent implements OnInit {
     }
   }
 
-  toggle(id: string) {
+  public toggle(id: string) {
     this.wordsforToggle.map(word => {
       if(word.id === id) {
         word.isHidden = true;
@@ -114,7 +100,7 @@ export class AudioGamePlayComponent implements OnInit {
     })
   }
 
-  notToKnow() {
+  public notToKnow() {
     this.count++;
     this.toggle(this.currentWord.id)
     const play = (url: string): void => {
@@ -134,7 +120,7 @@ export class AudioGamePlayComponent implements OnInit {
   }
 
 
-  checkWord(wordF: IWord) {
+  public checkWord(wordF: IWord) {
     let userWord = this.userWordsFromService.find((word: userWord) => word.wordId === this.currentWord.id);
     this.countAnswers();
     this.count++
@@ -207,7 +193,7 @@ export class AudioGamePlayComponent implements OnInit {
   }
 
 
-  sound() {
+  public sound() {
     const play = (url: string): void => {
       this.audio.src = url;
       const audio = this.audio;
