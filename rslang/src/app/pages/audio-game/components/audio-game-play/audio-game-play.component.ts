@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {IWord} from "../../../../../types";
 
 @Component({
@@ -13,6 +13,17 @@ export class AudioGamePlayComponent implements OnInit {
   @Output() rigthAnswerS = new EventEmitter <IWord[]>();
   @Output() wrongAnswerS = new EventEmitter <IWord[]>();
 
+  @HostListener('document: keyup', ['$event.key'])
+  onKeyUp(key: number) {
+    this.keyAnswer = +key;
+    const arr: number[] = [1,2,3,4,5]
+    if(arr.includes(this.keyAnswer)) {
+      this.keyObj = this.fiveWords[this.keyAnswer - 1];
+      this.checkWord(this.keyObj)
+    }
+  }
+
+  keyObj: IWord | [] = [];
   countAns: number = 0;
   count:number = 0;
   statisticRightAnswers:IWord[] = [];
@@ -31,20 +42,12 @@ export class AudioGamePlayComponent implements OnInit {
   currentWord: IWord;
   firstSlice:number = 0;
   secondSlice:number = 5;
-  keyAnswer: any;
+  keyAnswer: number;
 
   constructor() { }
 
   ngOnInit(): void {
     this.getWord();
-  }
-
-  onKeyUp() {
-    document.addEventListener('keyup', (tup) => {
-      this.keyAnswer = tup.key;
-      // this.checkWord(this.keyAnswer)
-      // console.log(this.fiveWords, 'FIE')
-    })
   }
 
   countAnswers() {
@@ -109,7 +112,6 @@ export class AudioGamePlayComponent implements OnInit {
     this.wordSound = `https://app-learnwords-rslang.herokuapp.com/${rightWord.audio}`;
     if(this.count < 7) {
       this.sound();
-      this.onKeyUp();
     }
   }
 
@@ -143,7 +145,7 @@ export class AudioGamePlayComponent implements OnInit {
   }
 
 
-  checkWord(wordF?: IWord, key?: any) {
+  checkWord(wordF?: IWord) {
     this.countAnswers();
     this.count++
     const changeWords = () => {
@@ -153,11 +155,6 @@ export class AudioGamePlayComponent implements OnInit {
     this.wordsforToggle.map(word => {
       word.isHidden = false;
     });
-    if(key) {
-      if(wordF?.keyId === key) {
-      }
-    }
-    else {
       if(wordF?.id) {
           if ("id" in this.currentWord && wordF?.id === this.currentWord.id) {
             this.toggle(wordF.id);
@@ -172,7 +169,7 @@ export class AudioGamePlayComponent implements OnInit {
             if(this.flagAnswer) {
               play(this.audioRightPath)
             }
-        }
+
         else {
           this.toggle(this.currentWord.id)
           this.statisticWrongAnswers.push(wordF);

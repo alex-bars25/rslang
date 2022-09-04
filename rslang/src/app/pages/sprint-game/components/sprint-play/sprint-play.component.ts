@@ -23,7 +23,7 @@ export class SprintPlayComponent implements OnInit {
       this.answer(true);
     }
   }
-  
+
   public isReady: boolean;
   public getReady: string[];
   public phrase: string;
@@ -69,7 +69,7 @@ export class SprintPlayComponent implements OnInit {
     this.streak = 0;
   }
 
-  public ngOnInit(): void {    
+  public ngOnInit(): void {
     interval(1000)
       .pipe(take(this.getReady.length))
       .subscribe((i) => {
@@ -84,7 +84,7 @@ export class SprintPlayComponent implements OnInit {
       this.getRandomTranslate();
     }, 4000);
     this.words = this.sprintService.words;
-    this.userWords = this.sprintService.userWords;    
+    this.userWords = this.sprintService.userWords;
   }
 
   private countdown(): void {
@@ -139,7 +139,7 @@ export class SprintPlayComponent implements OnInit {
     this.getRandomWord();
     this.getRandomTranslate();
     console.log(this.words.length);
-    
+
   }
 
   private correctAnswer(): void {
