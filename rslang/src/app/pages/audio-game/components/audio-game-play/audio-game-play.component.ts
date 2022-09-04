@@ -42,7 +42,7 @@ export class AudioGamePlayComponent implements OnInit {
   wordSound: string;
   wordsforToggle: IWord[];
   copyWords: IWord[];
-  fiveWords: IWord[];
+  fiveWords: IWord[] = [];
   currentWord: IWord;
   firstSlice:number = 0;
   secondSlice:number = 5;
@@ -55,7 +55,9 @@ export class AudioGamePlayComponent implements OnInit {
     console.log(this.wordsFromService)
 
     this.userWordsFromService = this.AudioService.userWords;
-    this.createBlock(this.wordsFromService)
+    this.createBlock(this.wordsFromService);
+
+
   }
 
   countAnswers() {
@@ -76,13 +78,18 @@ export class AudioGamePlayComponent implements OnInit {
   }
 
   sliceArr(words:IWord[]) {
+
     this.firstSlice = 0;
     this.secondSlice = 5;
     console.log(words.slice(0,4),'WoRds')
 
     this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
 
+    // for (let i = this.firstSlice; i < this.secondSlice; i++) {
+    //   this.fiveWords.push(words[i])
+    // }
     console.log('five', this.fiveWords)
+
     this.sendFiveWords(this.fiveWords);
 
     this.firstSlice += 5;
