@@ -2,13 +2,28 @@
   <app-header></app-header>
   <div class="audio-wrapper">
     <div class="audio-wrap-levels">
-      <app-audio-game-levels></app-audio-game-levels>
+      <app-audio-game-levels
+        *ngIf="display === 1"
+        (groupOfWords)="changeGroup($event)">
+      </app-audio-game-levels>
     </div>
-    <div class="audio-wrap-play">
-      <app-audio-game-play></app-audio-game-play>
+    <div class="audio-wrap-play"
+         *ngIf="display === 2"
+    >
+      <app-audio-game-play
+        [wordInstance]="words"
+        (countS)="countCheck($event)"
+        (rigthAnswerS)="forRigthAnswers($event)"
+        (wrongAnswerS)="forWrongAnswers($event)"
+      ></app-audio-game-play>
     </div>
-        <div class="audio-wrap-statist">
-        <app-audio-game-staticticks></app-audio-game-staticticks>
+        <div class="audio-wrap-statist"
+             *ngIf="display === 3">
+        <app-audio-game-staticticks
+          [rightAnswers]="rightAnswersForStatistic"
+          [wrongAnswers]="wrongAnswersForStatistic"
+          (repeatGameS)="repeatGame($event)"
+        ></app-audio-game-staticticks>
         </div>
   </div>
 </div>

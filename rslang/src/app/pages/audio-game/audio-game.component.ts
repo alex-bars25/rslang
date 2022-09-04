@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ApiService} from "../../services/api.service";
+import {IWord} from "../../../types";
 
 @Component({
   selector: 'app-audio-game',
@@ -7,9 +9,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AudioGameComponent implements OnInit {
 
-  constructor() { }
+  count: number = 1;
+  display:number = 1;
+  group: number;
+  words: IWord[] | [] = [];
+  rightAnswersForStatistic: IWord[];
+  wrongAnswersForStatistic: IWord[];
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
   }
 
+
+  forRigthAnswers(answers: IWord[]) {
+    this.rightAnswersForStatistic = answers;
+  }
+
+  forWrongAnswers(answers: IWord[]) {
+    this.wrongAnswersForStatistic = answers;
+  }
+
+  changeGroup(group:number) {
+    const page: number = Math.ceil(Math.random() * 29 - 1);
+    this.getLevelWords(group, page)
+    this.display = 2;
+  }
+
+  countCheck(count:number) {
+      this.display = 3;
+  }
+
+  getLevelWords(group:number, page: number): void {
+    this.api.getWords(group, page)
+      .subscribe((resp:IWord[]) =>  {
+        this.words = resp;
+      });
+  }
+
+  repeatGame(value: boolean) {
+    if(value) {
+      this.display = 1;
+    }
+  }
 }

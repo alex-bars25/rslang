@@ -1,0 +1,32 @@
+  <div class="statistick-wrapp">
+    <div class="statistick-block">
+      <div class="head-stat">
+        <img src="assets/vector.svg">
+        <h3>Ваш результат игры:</h3>
+      </div>
+      <div class="main-stat">
+        <div class="procent-side">
+          <h3>Процент правильно указанных слов:</h3>
+          <div class="pie no-round" style="--p:{{lengthProcent}};--c:purple;--b:15px"> {{lengthProcent}}%</div>
+        </div>
+          <div class="word-wrapper">
+            <div class="learned">
+              <h3>Всего выучено слов: {{rigthCount}}</h3>
+              <span *ngFor="let word of rightAnswers"><img src="assets/thumb.svg">
+                <p>{{word.word}}</p> &nbsp;<p>({{word.wordTranslate}})</p>
+              </span>
+            </div>
+            <div class="mistakes">
+              <h3>Допущено ошибок: {{wrongCount}}</h3>
+              <span *ngFor="let word of wrongAnswers"><img src="assets/denied.png">
+                <p>{{word.word}}</p> &nbsp;<p>({{word.wordTranslate}})</p>
+              </span>
+            </div>
+          </div>
+      </div>
+      <div class="result-btns">
+      <app-btn-action [buttonTitle]="titleRepeat" [logoBook]="logoRepeat" (click)="repeatGame()"></app-btn-action>
+      <app-btn-action [buttonTitle]="titleFinish" [logoBook]="logoFinish" [page]="pageFinish"></app-btn-action>
+      </div>
+    </div>
+  </div>

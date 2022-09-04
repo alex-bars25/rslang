@@ -7,7 +7,7 @@
       <li class="nav-item">
         <form #f="ngForm">
           <select class="select-nav" name="game" ngModel (change)="navigateTo(f.value.game)">
-            <option class="option-nav"value=""><p class="option-main">Игры</p></option>
+            <option value=""><p class="option-main">Игры</p></option>
             <option class="option-nav" value="/audio_game"><span class="nav-link">Аудиовызов</span> </option>
             <option class="option-nav" value="/sprint"><span class="nav-link">Спринт</span></option>
           </select>
