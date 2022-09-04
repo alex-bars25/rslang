@@ -15,6 +15,7 @@ export class AudioGameLevelsComponent implements OnInit {
   @Output() groupOfWords = new EventEmitter<number>()
 
   ngOnInit(): void {
+
   }
 
   getGroup(currentGroup:number):void {

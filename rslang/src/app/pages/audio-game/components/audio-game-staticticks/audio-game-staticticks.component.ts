@@ -8,19 +8,16 @@ import {IWord} from "../../../../../types";
 })
 export class AudioGameStaticticksComponent implements OnInit {
 
-  titleRepeat: string  = 'Повторить';
-  titleFinish: string = 'Закончить игру!';
-  logoRepeat: string = "./assets/repeat-log.svg";
-  logoFinish: string = "./assets/fin.svg"
-  pageRepeat: string = "/audio_game";
-  pageFinish: string = '/home';
-
-  lengthProcent:number;
-
-  rigthCount: number;
-  wrongCount: number;
-
-  repeatGameAgain:boolean = false;
+  public titleRepeat: string  = 'Повторить';
+  public titleFinish: string = 'Закончить игру!';
+  public logoRepeat: string = "./assets/repeat-log.svg";
+  public logoFinish: string = "./assets/fin.svg"
+  public pageFinish: string = '/home';
+  public lengthProcent:number;
+  public rigthCount: number;
+  public wrongCount: number;
+  public repeatGameAgain:boolean = false;
+  public score: number = 0;
 
   @Input() rightAnswers: IWord[];
   @Input() wrongAnswers: IWord[];
@@ -30,16 +27,36 @@ export class AudioGameStaticticksComponent implements OnInit {
 
   ngOnInit(): void {
     this.createStatistick();
+    this.updateCorrectAnswers();
+    this.updateWrongAnwers();
+    this.updateRecord();
   }
 
-  createStatistick() {
+  public createStatistick() {
     this.rigthCount = this.rightAnswers.length;
     this.wrongCount = this.wrongAnswers.length
     this.lengthProcent = this.rightAnswers.length * 14
   }
 
-  repeatGame() {
+  public repeatGame() {
     this.repeatGameAgain = true;
     this.repeatGameS.emit(this.repeatGameAgain)
   }
+
+  private updateWrongAnwers() {
+    localStorage.setItem('falseAnwersA', `${(+localStorage.getItem('falseAnswersA')! || 0) + this.wrongAnswers.length}`)
+  }
+  private updateCorrectAnswers() {
+    localStorage.setItem('trueAnswersS', `${(+localStorage.getItem('trueAnswersS')! || 0) + this.rightAnswers.length}`);
+  }
+
+  private updateRecord() {
+    const record: number = +localStorage.getItem('recordS')! || 0;
+    if (!record || record < this.score) {
+      localStorage.setItem('recordS', `${this.score}`);
+    }
+  }
+
+
+
 }

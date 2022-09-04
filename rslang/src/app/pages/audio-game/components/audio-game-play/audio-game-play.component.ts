@@ -1,5 +1,7 @@
 import {Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {IWord} from "../../../../../types";
+import {IWord, userWord} from "../../../../../types";
+import {AudioService} from "../../../../services/audio.service";
+import {ApiService} from "../../../../services/api.service";
 
 @Component({
   selector: 'app-audio-game-play',
@@ -8,7 +10,6 @@ import {IWord} from "../../../../../types";
 })
 export class AudioGamePlayComponent implements OnInit {
 
-  @Input() wordInstance: IWord[];
   @Output() countS = new EventEmitter <number>();
   @Output() rigthAnswerS = new EventEmitter <IWord[]>();
   @Output() wrongAnswerS = new EventEmitter <IWord[]>();
@@ -22,6 +23,9 @@ export class AudioGamePlayComponent implements OnInit {
       this.checkWord(this.keyObj)
     }
   }
+
+  wordsFromService: IWord[];
+  userWordsFromService: userWord[];
 
   keyObj: IWord | [] = [];
   countAns: number = 0;
@@ -44,10 +48,14 @@ export class AudioGamePlayComponent implements OnInit {
   secondSlice:number = 5;
   keyAnswer: number;
 
-  constructor() { }
+  constructor(private AudioService: AudioService, private api: ApiService) { }
 
   ngOnInit(): void {
-    this.getWord();
+    this.wordsFromService = this.AudioService.wordForAudio;
+    console.log(this.wordsFromService)
+
+    this.userWordsFromService = this.AudioService.userWords;
+    this.createBlock(this.wordsFromService)
   }
 
   countAnswers() {
@@ -59,57 +67,33 @@ export class AudioGamePlayComponent implements OnInit {
     this.countAns++;
   }
 
-  getWord() {
-    setTimeout(() => {
-      this.createBlock(this.wordInstance)
-    }, 1000)
-  }
-
   createBlock(words: IWord[]) {
-    this.copyWords = [...words];
-    this.copyWords.map(elem => {
+    words.map(elem => {
       elem.isHidden = false;
-    })
-
-    this.wordsforToggle = [...this.copyWords];
-    this.sliceArr(this.copyWords)
+    });
+    this.wordsforToggle = [...words];
+    this.sliceArr(words)
   }
 
   sliceArr(words:IWord[]) {
-    if(this.secondSlice > 21) {
-      this.firstSlice = 0;
-      this.secondSlice = 5;
-      words.sort((a,b) =>{
-        if(a.word < b.word) {
-          return 1;
-        }
-        if(a.word > b.word) {
-          return -1;
-        }
-        return 0;
-      })
-      this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
-      this.firstSlice += 5;
-      this.secondSlice += 5;
-      this.sendFiveWords(this.fiveWords);
-    }
-    else {
-      this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
-      this.fiveWords.map((elem, ind) => {
-        let index:number = ind;
-        index = index + 1;
-        elem.keyId = index;
-      })
-      this.firstSlice += 5;
-      this.secondSlice += 5;
-      this.sendFiveWords(this.fiveWords);
-    }
+    this.firstSlice = 0;
+    this.secondSlice = 5;
+    console.log(words.slice(0,4),'WoRds')
+
+    this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
+
+    console.log('five', this.fiveWords)
+    this.sendFiveWords(this.fiveWords);
+
+    this.firstSlice += 5;
+    this.secondSlice += 5;
+
   }
 
   sendFiveWords(words: IWord[]) {
     const rightWord = words[Math.floor(Math.random() * 5)];
     this.currentWord = rightWord;
-    this.wordSound = `https://app-learnwords-rslang.herokuapp.com/${rightWord.audio}`;
+    this.wordSound =  `https://app-learnwords-rslang.herokuapp.com/${rightWord.audio}`;
     if(this.count < 7) {
       this.sound();
     }
@@ -144,18 +128,31 @@ export class AudioGamePlayComponent implements OnInit {
 
 
   checkWord(wordF: IWord) {
+    let userWord = this.userWordsFromService.find((word: userWord) => word.wordId === this.currentWord.id);
     this.countAnswers();
     this.count++
     const changeWords = () => {
-      this.sliceArr(this.copyWords)
+      this.createBlock(this.wordsFromService)
     }
     setTimeout(changeWords, 1000);
     this.wordsforToggle.map(word => {
       word.isHidden = false;
     });
+
     if (wordF.id === this.currentWord.id) {
+      if(!userWord) {
+          this.api.createUserWord(localStorage.getItem('userId')!, wordF.id, {difficulty: 'false', optional: {}} )
+            .subscribe()
+          this.updateStudiedWords(true)
+      }
+      else if (userWord.difficulty === 'true') {
+        this.api.updateUserWord(localStorage.getItem('userId')!, wordF.id, {difficulty: 'false', optional: {}}).subscribe();
+        this.updateStudiedWords(true);
+      }
+
       this.toggle(wordF.id);
       this.statisticRightAnswers.push(wordF);
+
       const play = (url: string): void => {
         this.audioRightAnswer.src = url;
         const audio = this.audioRightAnswer;
@@ -166,8 +163,19 @@ export class AudioGamePlayComponent implements OnInit {
       if (this.flagAnswer) {
         play(this.audioRightPath)
       }
+
     }
+
     else {
+      if(!userWord) {
+        this.api.createUserWord(localStorage.getItem('userId')!, wordF.id, {difficulty: 'true', optional: {}} )
+          .subscribe()
+      }
+      else if (userWord.difficulty === 'false') {
+        this.api.deleteUserWord(localStorage.getItem('userId')!, wordF.id ).subscribe();
+        this.updateStudiedWords(false);
+      }
+
       this.toggle(this.currentWord.id)
       this.statisticWrongAnswers.push(wordF);
       const play = (url: string): void => {
@@ -180,11 +188,16 @@ export class AudioGamePlayComponent implements OnInit {
       if (this.flagAnswer) {
         play(this.audioWrongPath)
       }
-
     }
   }
 
-
+  private updateStudiedWords(add: boolean) {
+    if (add) {
+      localStorage.setItem('studWordsA', `${(+localStorage.getItem('studWordsA')! || 0) + 1}`)
+    } else {
+      localStorage.setItem('studWordsA', `${+localStorage.getItem('studWordsA')! - 1}`)
+    }
+  }
 
 
   sound() {
