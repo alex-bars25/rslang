@@ -39,3 +39,8 @@ difficulty: string,
 id: string,
 wordId: string
 }
+
+export interface Word {
+  difficulty: string,
+  optional: object
+}

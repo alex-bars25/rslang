@@ -14,6 +14,10 @@ export class HomepageComponent implements OnInit {
     if (!localStorage.getItem('token')) {
       this.router.navigate(['/authorization']);
     }
+
+    if (!localStorage.getItem('studWords')) {
+      localStorage.setItem('studWords', '0');
+    }
   }
 
 }

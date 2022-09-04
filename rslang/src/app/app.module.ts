@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from "@angular/forms";
@@ -11,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {AudioGameModule} from "./pages/audio-game/audio-game.module";
 import { SprintGameModule } from './pages/sprint-game/sprint-game.module';
 import { DictionaryModule } from './pages/dictionary/dictionary.module';
-
+import { StatisticModule } from './pages/statistic/statistic.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,8 @@ import { DictionaryModule } from './pages/dictionary/dictionary.module';
       TextbookModule,
       HttpClientModule,
       SprintGameModule,
-      DictionaryModule
+      DictionaryModule,
+      StatisticModule
     ],
   providers: [],
   bootstrap: [AppComponent]
