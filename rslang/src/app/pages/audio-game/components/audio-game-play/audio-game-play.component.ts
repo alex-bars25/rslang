@@ -115,7 +115,6 @@ export class AudioGamePlayComponent implements OnInit {
     }
   }
 
-
   toggle(id: string) {
     this.wordsforToggle.map(word => {
       if(word.id === id) {
@@ -139,13 +138,12 @@ export class AudioGamePlayComponent implements OnInit {
     }
     const changeWords = () => {
       this.sliceArr(this.copyWords);
-
     }
     setTimeout(changeWords, 1000)
   }
 
 
-  checkWord(wordF?: IWord) {
+  checkWord(wordF: IWord) {
     this.countAnswers();
     this.count++
     const changeWords = () => {
@@ -155,38 +153,39 @@ export class AudioGamePlayComponent implements OnInit {
     this.wordsforToggle.map(word => {
       word.isHidden = false;
     });
-      if(wordF?.id) {
-          if ("id" in this.currentWord && wordF?.id === this.currentWord.id) {
-            this.toggle(wordF.id);
-            this.statisticRightAnswers.push(wordF);
-            const play = (url: string): void => {
-              this.audioRightAnswer.src = url;
-              const audio = this.audioRightAnswer;
-              setTimeout(function () {
-                audio.play();
-              }, 150);
-            }
-            if(this.flagAnswer) {
-              play(this.audioRightPath)
-            }
-
-        else {
-          this.toggle(this.currentWord.id)
-          this.statisticWrongAnswers.push(wordF);
-          const play = (url: string): void => {
-            this.audioWrongAnswer.src = url;
-            const audio = this.audioWrongAnswer;
-            setTimeout(function () {
-              audio.play();
-            }, 150);
-          }
-          if(this.flagAnswer) {
-            play(this.audioWrongPath)
-          }
-        }
+    if (wordF.id === this.currentWord.id) {
+      this.toggle(wordF.id);
+      this.statisticRightAnswers.push(wordF);
+      const play = (url: string): void => {
+        this.audioRightAnswer.src = url;
+        const audio = this.audioRightAnswer;
+        setTimeout(function () {
+          audio.play();
+        }, 150);
+      }
+      if (this.flagAnswer) {
+        play(this.audioRightPath)
       }
     }
+    else {
+      this.toggle(this.currentWord.id)
+      this.statisticWrongAnswers.push(wordF);
+      const play = (url: string): void => {
+        this.audioWrongAnswer.src = url;
+        const audio = this.audioWrongAnswer;
+        setTimeout(function () {
+          audio.play();
+        }, 150);
+      }
+      if (this.flagAnswer) {
+        play(this.audioWrongPath)
+      }
+
+    }
   }
+
+
+
 
   sound() {
     const play = (url: string): void => {
