@@ -29,9 +29,9 @@
     <div class="points">+{{ points }} очков за слово</div>
     <div class="birds">
       <div class="bird bird1"></div>
-      <div class="bird bird2"></div>
-      <div class="bird bird3"></div>
-      <div class="bird bird4"></div>
+      <div class="bird bird2" *ngIf="streak >= 3"></div>
+      <div class="bird bird3" *ngIf="streak >= 7"></div>
+      <div class="bird bird4" *ngIf="streak >= 11"></div>
       <div class="branch"></div>
     </div>
     <div class="word-en">{{ word.word }}</div>

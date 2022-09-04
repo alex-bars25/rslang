@@ -20,6 +20,7 @@ export class SprintIntroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.api.getUserWords(localStorage.getItem('userId')!).subscribe(words => this.sprintService.userWords = words);
   }
 
   public increaseLevel(): void {
