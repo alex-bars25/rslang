@@ -29,10 +29,6 @@ button {
 button:hover {
   cursor: pointer;
 }
-button:active {
-  border: 2px solid #0a0808;
-}
-
 
 @media screen and (max-width:768px) {
   .card-wrapper {
