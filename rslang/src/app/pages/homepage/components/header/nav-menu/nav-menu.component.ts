@@ -23,6 +23,10 @@ export class NavMenuComponent implements OnInit {
     this.router.navigateByUrl("/textbook");
   }
 
+  public goToStatistic() {
+    this.router.navigateByUrl("/statistic");
+  }
+
   public goToLoginPage() {
     this.router.navigateByUrl("/authorization");
     localStorage.clear();

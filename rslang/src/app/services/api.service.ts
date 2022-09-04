@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoggedUser, User, IWord, userWord } from 'src/types';
+import { LoggedUser, User, IWord, userWord, Word } from 'src/types';
 
 
 @Injectable({
@@ -50,8 +50,11 @@ export class ApiService {
     )
   }
 
-  public createUserWord(userId: string, wordId: string, word: object): Observable<object> {
+  public createUserWord(userId: string, wordId: string, word: Word): Observable<object> {
     const myHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    if (word.difficulty === "false") {
+    localStorage.setItem('studWords', `${+localStorage.getItem('studWords')!+1}`);
+    }
     return this.http.post<object>(
       `https://app-learnwords-rslang.herokuapp.com/users/${userId}/words/${wordId}`,
         word,
@@ -59,8 +62,11 @@ export class ApiService {
     )
   }
 
-  public updateUserWord(userId: string, wordId: string, word: object): Observable<object> {
+  public updateUserWord(userId: string, wordId: string, word: Word): Observable<object> {
     const myHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    if (word.difficulty === "false") {
+      localStorage.setItem('studWords', `${+localStorage.getItem('studWords')!+1}`);
+      }
     return this.http.put<object>(
       `https://app-learnwords-rslang.herokuapp.com/users/${userId}/words/${wordId}`,
         word,
@@ -70,6 +76,9 @@ export class ApiService {
 
   public deleteUserWord(userId: string, wordId: string): Observable<object> {
     const myHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    if (+localStorage.getItem('studWords')! >= 1) {
+    localStorage.setItem('studWords', `${+localStorage.getItem('studWords')!-1}`);
+    }
     return this.http.delete<object>(
       `https://app-learnwords-rslang.herokuapp.com/users/${userId}/words/${wordId}`,
       {headers:myHeaders}
