@@ -47,6 +47,21 @@ export class WordBlockComponent implements OnInit {
     this.exampleSound = `https://app-learnwords-rslang.herokuapp.com/${this.wordInstance.audioExample}`;
   }
 
+  checkWord() {
+    this.api.getUserWords(this.userId).subscribe((userWords: userWord[]) => {
+      userWords.forEach((word): void => {
+        if (word.wordId === this.wordInstance.id) {
+          this.displayColor = {'background-color': 'rgb(245, 215, 215)'};
+          if (word.difficulty === "true") {
+            this.displayText = 'СЛОЖНОЕ';
+          } else {
+            this.displayText = 'ИЗУЧЕНОЕ';
+          }
+        };
+      });
+    });
+  }
+
   sound() {
     let count = 0;
     const play = (url: string): void => {
@@ -102,6 +117,7 @@ export class WordBlockComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkWord();
     this.updateBlock();
   }
 

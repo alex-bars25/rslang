@@ -20,6 +20,7 @@ export class TextbookComponent implements OnInit {
   changeSection ([color, group]: [string, number]): void{
     this.shadow =  {'box-shadow': `inset 0 0 100px ${color}`};
     this.group = group;
+    localStorage.setItem('group', `${this.group}`)
     this.page = 1;
     this.updateWordsList();
   }
@@ -27,11 +28,13 @@ export class TextbookComponent implements OnInit {
   toRight(): void {
     if (this.page < 30) this.page++;
     this.updateWordsList();
+    localStorage.setItem('page', `${this.page}`)
   }
 
   toLeft(): void {
     if (this.page > 1) this.page--;
     this.updateWordsList();
+    localStorage.setItem('page', `${this.page}`)
   }
 
   updateWordsList: () => void  = (): void => {
@@ -42,22 +45,32 @@ export class TextbookComponent implements OnInit {
     createDiffWord: (wordId: string) => void  = (wordId): void => {
       this.api.createUserWord(this.userId, wordId, 
       { "difficulty": "true", "optional": {}}
-      ).subscribe((word: object) => console.log(word));
+      ).subscribe();
     }
 
     createStudWord: (wordId: string) => void  = (wordId): void => {
       this.api.createUserWord(this.userId, wordId, 
       { "difficulty": "false", "optional": {}}
-      ).subscribe((word: object) => console.log(word));
+      ).subscribe();
     }
 
     updateToStudWord: (wordId: string) => void  = (wordId): void => {
       this.api.updateUserWord(this.userId, wordId, 
       { "difficulty": "false", "optional": {}}
-      ).subscribe((word: object) => console.log(word));
+      ).subscribe();
     }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('page')) {
+       localStorage.setItem('page', '1');
+     } else {
+       this.page = +localStorage.getItem('page')!;
+     }
+     if (!localStorage.getItem('group')) {
+      localStorage.setItem('group', '0');
+    } else {
+      this.group = +localStorage.getItem('group')!;
+    }
     this.updateWordsList();
   }
 
