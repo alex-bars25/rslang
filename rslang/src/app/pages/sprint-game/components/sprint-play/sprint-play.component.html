@@ -9,9 +9,20 @@
   [ngClass]="correct ? 'correct-ans' : ''"
 >
   <div class="progress">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
+    <div
+      class="circle"
+      [ngClass]="streak > 0 && streak < 12 && streak !== 4 && streak !== 8 ? 'streak' : ''"
+      [ngClass]="streak > 11 ? 'hide' : ''"
+    ></div>
+    <div
+      class="circle"
+      [ngClass]="streak === 2 || streak === 3 || streak === 6 || streak === 7 || streak === 10 || streak >= 11 ? 'streak' : ''"
+    ></div>
+    <div
+      class="circle"
+      [ngClass]="streak === 3 || streak === 7 || streak === 11 ? 'streak' : ''"
+      [ngClass]="streak > 11 ? 'hide' : ''"
+    ></div>
   </div>
   <div class="points">+{{ points }} очков за слово</div>
   <div class="birds">
@@ -21,11 +32,11 @@
     <div class="bird bird4"></div>
     <div class="branch"></div>
   </div>
-  <div class="word-en">throw</div>
-  <div class="word-ru">бросить</div>
+  <div class="word-en">{{ word.word }}</div>
+  <div class="word-ru">{{ translate }}</div>
   <div class="answer">
-    <button class="wrong">Неверно</button>
-    <button class="correct">Верно</button>
+    <button class="wrong" (click)="answer(false)">Неверно</button>
+    <button class="correct" (click)="answer(true)">Верно</button>
   </div>
   <div class="answer-key">
     <span class="left-arrow">←</span>
