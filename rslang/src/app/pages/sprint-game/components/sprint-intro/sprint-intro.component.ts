@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { interval, take } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { SprintService } from 'src/app/services/sprint.service';
 import { IWord } from 'src/types';
@@ -14,20 +13,10 @@ export class SprintIntroComponent implements OnInit {
   gameStatus: EventEmitter<number>;
   
   public level: number;
-  public startClicked: boolean;
-  public getReady: string[];
-  public phrase: string;
-  public bip: HTMLAudioElement;
-  public whistle: HTMLAudioElement;
 
   constructor(private sprintService: SprintService, private api: ApiService) {
     this.gameStatus = new EventEmitter<number>();
     this.level = 1;
-    this.startClicked = false;
-    this.getReady = ['На старт!', 'Внимание!', 'Марш!'];
-    this.phrase = 'Приготовтесь!';
-    this.bip = new Audio('assets/voices/bip.mp3');
-    this.whistle = new Audio('assets/voices/whistle.mp3');
   }
 
   ngOnInit(): void {
@@ -42,17 +31,7 @@ export class SprintIntroComponent implements OnInit {
   }
 
   public startGame(): void {
-    this.startClicked = true;
-    interval(1000)
-      .pipe(take(this.getReady.length))
-      .subscribe((i) => {
-        this.phrase = this.getReady[i];
-        this.bip.play();
-      });
-    setTimeout(() => {
-      this.gameStatus.emit(2);
-      this.whistle.play();
-    }, 4000);
+    this.gameStatus.emit(2);
     this.getWords();
   }
 
