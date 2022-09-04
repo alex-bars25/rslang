@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {IWord} from "../../../../../types";
 
 @Component({
   selector: 'app-audio-game-staticticks',
@@ -16,11 +17,13 @@ export class AudioGameStaticticksComponent implements OnInit {
 
   lengthProcent:number;
 
+  rigthCount: number;
+  wrongCount: number;
 
   repeatGameAgain:boolean = false;
 
-  @Input() rightAnswers: Array <string>;
-  @Input() wrongAnswers: Array<string>;
+  @Input() rightAnswers: IWord[];
+  @Input() wrongAnswers: IWord[];
   @Output() repeatGameS = new EventEmitter <boolean>()
 
   constructor() { }
@@ -30,6 +33,8 @@ export class AudioGameStaticticksComponent implements OnInit {
   }
 
   createStatistick() {
+    this.rigthCount = this.rightAnswers.length;
+    this.wrongCount = this.wrongAnswers.length
     this.lengthProcent = this.rightAnswers.length * 14
   }
 

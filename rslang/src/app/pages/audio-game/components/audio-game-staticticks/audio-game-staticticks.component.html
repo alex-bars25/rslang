@@ -11,15 +11,16 @@
         </div>
           <div class="word-wrapper">
             <div class="learned">
-              <h3>Всего выучено слов: ХХХ</h3>
+              <h3>Всего выучено слов: {{rigthCount}}</h3>
               <span *ngFor="let word of rightAnswers"><img src="assets/thumb.svg">
-                <p>{{word}}</p></span>
+                <p>{{word.word}}</p> &nbsp;<p>({{word.wordTranslate}})</p>
+              </span>
             </div>
             <div class="mistakes">
-              <h3>Допущено ошибок: XXX</h3>
+              <h3>Допущено ошибок: {{wrongCount}}</h3>
               <span *ngFor="let word of wrongAnswers"><img src="assets/denied.png">
-                <p>{{word}}</p></span>
-
+                <p>{{word.word}}</p> &nbsp;<p>({{word.wordTranslate}})</p>
+              </span>
             </div>
           </div>
       </div>

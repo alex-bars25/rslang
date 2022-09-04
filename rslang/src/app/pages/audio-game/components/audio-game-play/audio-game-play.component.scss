@@ -6,9 +6,8 @@
 }
 
 .isHidden {
-  background: #e81010;
-  color: #fff;
-}
+  color: #000;
+  filter: brightness(150%) hue-rotate(104deg);}
 
 .audio-block {
   margin: 0 auto;

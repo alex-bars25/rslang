@@ -13,8 +13,8 @@ export class AudioGameComponent implements OnInit {
   display:number = 1;
   group: number;
   words: IWord[] | [] = [];
-  rightAnswersForStatistic: string[];
-  wrongAnswersForStatistic: string[];
+  rightAnswersForStatistic: IWord[];
+  wrongAnswersForStatistic: IWord[];
 
   constructor(private api: ApiService) { }
 
@@ -22,11 +22,11 @@ export class AudioGameComponent implements OnInit {
   }
 
 
-  forRigthAnswers(answers: string[]) {
+  forRigthAnswers(answers: IWord[]) {
     this.rightAnswersForStatistic = answers;
   }
 
-  forWrongAnswers(answers: string[]) {
+  forWrongAnswers(answers: IWord[]) {
     this.wrongAnswersForStatistic = answers;
   }
 
