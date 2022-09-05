@@ -1,0 +1,45 @@
+.card-wrapper {
+  width: 27rem;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
+
+  h3 {
+    margin-bottom: 1.3rem;
+  }
+
+  p {
+    margin-top: 1rem;
+    margin-bottom: 1.3rem;
+    text-align: center;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+}
+@media screen and (max-width:768px) {
+  .card-wrapper {
+    width: 20rem;
+  }
+}
+
+@media screen and (max-width:550px) {
+  .card-wrapper {
+    width: 100%;
+
+    p {
+      font-size: 10px;
+    }
+  }
+}

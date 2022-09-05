@@ -1,0 +1,68 @@
+<app-page-container>
+  <header class="wrapper">
+    <app-header></app-header>
+  </header>
+  <main>
+    <div class="main-wrapper">
+      <div class="block-wrapper">
+        <div class="tittle">
+          <img class="icon" src="assets/logo-book-m.svg" alt="icon">
+          <h3>Прогресс изучения</h3>
+        </div>
+        <div class="progress">
+          <div class="bar" [ngStyle]="progress"></div><p class='value'>{{progressPercent}}</p>
+        </div>
+        <span>
+          {{valueWordsGeneral}} из 3600
+        </span>
+        <span class='today'>
+          Выучено слов за текущую сессию: <span  class='today-value'>{{valueWordsToday}}</span>
+        </span>
+      </div>
+      <hr class='line'>
+      <h2 class="main-tittle">Статистика по играм за текущую сессию</h2>
+      <hr class='line'>
+      <div class="block-wrapper">
+        <div class="tittle">
+          <img class="icon" src="assets/game-logo.svg" alt="icon">
+          <h3>Спринт</h3>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h4>Кол-во изученных слов</h4>
+            <div class="pie no-round" style="--p:100;--c:rgb(128, 0, 128);--b:15px">{{studWordsS}}</div>
+          </div>
+          <div class="card">
+            <h4>Процент правильных ответов</h4>
+            <div class="pie no-round" style="--p:{{trueAnswersPercentS}};--c:rgb(4, 212, 56);--b:15px"> {{trueAnswersPercentS}}%</div>
+          </div>
+          <div class="card">
+            <h4>Рекорд очков за игру 🏆</h4>
+            <div class="pie no-round" style="--p:100;--c:rgb(9, 72, 246);--b:15px">{{recordS}} </div>
+          </div>
+        </div>
+      </div>
+      <hr class='line'>
+      <div class="block-wrapper">
+        <div class="tittle">
+          <img class="icon" src="assets/game-logo.svg" alt="icon">
+          <h3>Аудиовызов</h3>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h4>Кол-во изученных слов</h4>
+            <div class="pie no-round" style="--p:100;--c:rgb(240, 84, 84);--b:15px">{{studWordsA}}</div>
+          </div>
+          <div class="card">
+            <h4>Процент правильных ответов</h4>
+            <div class="pie no-round" style="--p:{{trueAnswersPercentA}};--c:rgb(255, 153, 0);--b:15px">{{trueAnswersPercentA}}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="wrapper">
+    <app-footer-block></app-footer-block>
+  </footer>
+</app-page-container>
+

@@ -1,0 +1,17 @@
+.registered {
+  margin: 1rem 0;
+  color: #373d3d;
+  background: #ffffff4d;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.link {
+  text-decoration: none;
+  color: #232525;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

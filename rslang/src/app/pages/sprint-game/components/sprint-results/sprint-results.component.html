@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="points">Результат: {{ score }} очков</div>
+  <div class="mistake">
+    <span>Ошибся: </span>
+    <span class="mistake-count">{{ wrongAnswers.length }}</span>
+  </div>
+  <div class="mistake-block">
+    <div class="word" *ngFor="let word of wrongAnswers">
+      <img class="sound" src="assets/volume_Icon.svg" alt="sound" (click)="playAudio(word.audio)">
+      <span>{{ word.word }}</span>
+      <span>{{ word.transcription }}</span>
+      <span>{{ word.wordTranslate }}</span>
+    </div>
+  </div>
+  <div class="correct">
+    <span>Ответил верно: </span>
+    <span class="correct-count">{{ correctAnswers.length }}</span>
+  </div>
+  <div class="correct-block">
+    <div class="word" *ngFor="let word of correctAnswers">
+      <img class="sound" src="assets/volume_Icon.svg" alt="sound" (click)="playAudio(word.audio)">
+      <span>{{ word.word }}</span>
+      <span>{{ word.transcription }}</span>
+      <span>{{ word.wordTranslate }}</span>
+    </div>
+  </div>
+  <div class="controls">
+    <button class="button" (click)="newGame()">Новая игра</button>
+    <button class="button" (click)="toHomePage()">На главную</button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 400px;
+
+  @media (max-width: 500px) {
+    width: 280px;
+  }
+}
+
+.help {
+  color: #373d3d;
+  background: #ff48004d;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+}

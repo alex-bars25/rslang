@@ -1,0 +1,9 @@
+<div class="nav-wrapper">
+  <div class="sections">
+    <div (click)="getColor('#4eb1e2', 0)" class='section-btn diff' [ngClass]="{active: isActive[0]}">Сложные</div>
+    <div (click)="getColor('#63dbab', 1)" class='section-btn stud' [ngClass]="{active: isActive[1]}">Изученные</div>
+    <a (click)="goToTextbookPage()" class='section-btn textbook'>Учебник</a>
+  </div>
+  <a (click)="goToSprintPage()" class='section-btn game'>Спринт</a>
+  <a (click)="goToAudioGamePage()" class='section-btn game'>Аудиовызов</a>
+</div>

@@ -1,0 +1,60 @@
+button {
+  width: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.9rem;
+  font-size: 1rem;
+
+  .logo-img {
+    width: 15%;
+    height: 75%;
+  }
+
+  h5 {
+    margin-right: .7rem;
+  }
+}
+.buttonEnter{
+  color: #fff;
+  background-color: #234e7a;
+  border: none;
+  border-radius: 10px;
+}
+
+.buttonEnter:hover {
+  background-color: #182a36;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+  .card-wrapper {
+    width: 20rem;
+
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (max-width:550px) {
+  .card-wrapper {
+    width: 13rem;
+
+    p {
+      font-size: 10px;
+    }
+
+    button {
+      width: 10rem;
+      height: 2.9rem;
+
+
+    }
+  }
+
+}
+

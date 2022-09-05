@@ -1,0 +1,23 @@
+<div class="games-block">
+    <div class="tittle">
+      <img class="icon" src="assets/game-logo.svg" alt="icon">
+      <h3>Игры</h3>
+    </div>
+  <div class="game-blocks">
+    <app-card-block class="first-block"
+      [titleCard]="titleSprintGameBlock"
+      [currentImage]="imgSprintGameBlock"
+      [titleFromBlock]="titleBlockGame"
+      [imgFromBlock]="sprintImgLogo"
+      [page]="sprintPage"
+    ></app-card-block>
+    <app-card-block class="second-block"
+      [titleCard]="titleAudioGameBlock"
+      [currentImage]="imgAudioGameBlock"
+      [page]="audioPage"
+      [titleFromBlock]="titleBlockGame"
+      [imgFromBlock]="audioImgLogo"
+      [page]="'audio_game'"
+    ></app-card-block>
+  </div>
+</div>

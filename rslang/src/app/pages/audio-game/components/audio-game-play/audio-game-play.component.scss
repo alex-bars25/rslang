@@ -1,0 +1,135 @@
+.audio-play-wrapp {
+  min-height: 67vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.isHidden {
+  color: #000;
+  filter: brightness(150%) hue-rotate(104deg);}
+
+.audio-block {
+  margin: 0 auto;
+  padding-top: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  > * {
+    margin-bottom: 4rem;
+  }
+  .button-logo {
+    position: relative;
+    border: none;
+  }
+  .button-logo:hover {
+    filter: invert(27%) sepia(81%) saturate(78%) hue-rotate(546deg) brightness(54%) contrast(67%);
+    cursor: pointer;
+    transition:all ease 0.4s;
+  }
+  .button-logo:active {
+    top: 2px;
+  }
+  .answers-btns {
+
+    .answer-item {
+      margin-right: 1.5rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: row;
+      background: #c2dcf8;
+      border-radius: 3rem;
+      position: relative;
+    }
+
+    @media (max-width: 1180px) {
+      .answer-item {
+        margin-right: 0;
+      }
+    }
+
+    .answer-item:hover {
+      background: rgba(77, 238, 230, 0.87);
+      transition: all ease 0.4s;
+      border-radius: 3rem;
+      cursor: pointer;
+    }
+    .answer-item:active {
+      top: .1em;
+      left: .1em;
+      background: rgba(241, 41, 41, 0.76);
+
+    }
+
+    .item-number {
+      margin-right: 0.6rem;
+    }
+  }
+
+
+}
+
+.button-logo {
+  background: transparent;
+  border-radius: 45%;
+  border: none;
+}
+.logo-audio {
+  width: 5rem;
+  height: 5rem;
+}
+
+
+.answers-btns {
+  display: flex;
+  
+  .answer-item {
+    display: flex;
+    border: none;
+    font-size: 1rem;
+    margin-right: 2rem;
+  }
+}
+
+.follow-btn {
+  button {
+    padding: 3px 6px;
+    width:130px;
+    height: 40px;
+    border: none;
+    margin: 20px auto;
+    background: rgba(19, 133, 119, 0.79);
+    border-radius: 13px;
+    color: #fff;
+    font-size: 1rem;
+  }
+  button:hover, button:focus {
+    cursor: pointer;
+    background: rgba(23, 239, 231, 0.87);
+
+  }
+
+  button:active {
+    background: #d0d3d6;
+    background-image: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,0));
+    box-shadow: inset 0 0 2px rgba(0,0,0,.2), inset 0 2px 5px rgba(0,0,0,.2), 0 1px rgba(255,255,255,.2);
+  }
+
+}
+
+@media (max-width: 1180px) {
+  .answers-btns {
+    flex-direction: column;
+    > * {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .answers-btns {
+    padding: 0.7rem;
+  }
+}

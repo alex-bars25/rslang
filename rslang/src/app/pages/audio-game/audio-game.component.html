@@ -1,0 +1,6 @@
+<app-header></app-header>
+<div class="wrapper">
+  <app-audio-game-levels *ngIf="display === 1" (display)="getDisplay($event)"></app-audio-game-levels>
+  <app-audio-game-play *ngIf="display === 2" (display)="getDisplay($event)"></app-audio-game-play>
+  <app-audio-game-staticticks *ngIf="display === 3" (display)="getDisplay($event)"></app-audio-game-staticticks>
+</div>

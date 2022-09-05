@@ -1,0 +1,13 @@
+<div class="nav-wrapper">
+  <div class="sections">
+    <div (click)="getColor('#9af3cf', 0)" class='section-btn a1' [ngClass]="{active: isActive[0]}">A1</div>
+    <div (click)="getColor('#63dbab', 1)" class='section-btn a2' [ngClass]="{active: isActive[1]}">A2</div>
+    <div (click)="getColor('#f4e99d', 2)" class='section-btn b1' [ngClass]="{active: isActive[2]}">B1</div>
+    <div (click)="getColor('#e7e74f', 3)" class='section-btn b2' [ngClass]="{active: isActive[3]}">B2</div>
+    <div (click)="getColor('#89e4f2', 4)" class='section-btn c1' [ngClass]="{active: isActive[4]}">C1</div>
+    <div (click)="getColor('#4eb1e2', 5)" class='section-btn c2' [ngClass]="{active: isActive[5]}">C2</div>
+    <a (click)="goToDictionaryPage()" class='section-btn dictionary'>Словарь</a>
+  </div>
+  <a (click)="goToSprintPage()" class='section-btn game'>Спринт</a>
+  <a (click)="goToAudioGamePage()" class='section-btn game'>Аудиовызов</a>
+</div>

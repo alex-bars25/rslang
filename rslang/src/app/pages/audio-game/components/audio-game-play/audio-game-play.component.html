@@ -1,0 +1,28 @@
+<div class="audio-play-wrapp">
+  <div class="audio-block">
+    <div class="sound-btn">
+      <button type="button" class="button-logo" (click)="playSound()">
+        <img src="assets/Sound-Icon.svg" alt="logo" class="logo-audio">
+      </button>
+    </div>
+    <div class="answers-btns">
+      <button class="answer-item"
+        *ngFor="let word of currentWords;
+        index as i"
+        [class.isHidden]="word.isHidden"
+        (click)="answer(word)"
+        [disabled]="disabled"
+      >
+        <span class="item-number">{{i+1}}</span>
+        <span class="item-word" >{{word.wordTranslate}}</span>
+        <span class="item-block-word"></span>
+      </button>
+    </div>
+    <div class="follow-btn">
+      <button type="button" (click)="notToKnow()">
+        <span class="btn-follow">Не знаю</span>
+        <span class="btn-block-word"></span>
+      </button>
+    </div>
+  </div>
+</div>
