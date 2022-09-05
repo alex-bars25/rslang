@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {IWord} from "../../../../../types";
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
+import {IWord, userWord} from "../../../../../types";
+import {AudioService} from "../../../../services/audio.service";
+import {ApiService} from "../../../../services/api.service";
 
 @Component({
   selector: 'app-audio-game-play',
@@ -7,201 +9,135 @@ import {IWord} from "../../../../../types";
   styleUrls: ['./audio-game-play.component.scss']
 })
 export class AudioGamePlayComponent implements OnInit {
+  @Output()
+  display: EventEmitter<number>;
 
-  @Input() wordInstance: IWord[];
-  @Output() countS = new EventEmitter <number>();
-  @Output() rigthAnswerS = new EventEmitter <IWord[]>();
-  @Output() wrongAnswerS = new EventEmitter <IWord[]>();
+  @HostListener('document: keyup', ['$event.key'])
+  onKeyUp(key: number) {
+    if (key > 0 && key < 6) {     
+      this.answer(this.currentWords[key-1]);
+    }
+  }
 
-  countAns: number = 0;
-  count:number = 0;
-  statisticRightAnswers:IWord[] = [];
-  statisticWrongAnswers:IWord[] = [];
-  audio: HTMLAudioElement = new Audio();
-  audioRightAnswer: HTMLAudioElement = new Audio();
-  audioRightPath: string = './assets/rigthanswe.mp3'
-  audioWrongAnswer: HTMLAudioElement = new Audio();
-  audioWrongPath: string = './assets/mistake.mp3'
-  flagAnswer: boolean = true;
-  autoplay: boolean = true;
-  wordSound: string;
-  wordsforToggle: IWord[];
-  copyWords: IWord[];
-  fiveWords: IWord[];
-  currentWord: IWord;
-  firstSlice:number = 0;
-  secondSlice:number = 5;
-  keyAnswer: any;
+  public words: IWord[];
+  public wordsForGame: IWord[];
+  public wrongWords: IWord[]; 
+  public index: number;
+  public currentWords: IWord[];
+  public sound: HTMLAudioElement;
+  public wrongSound: HTMLAudioElement;
+  public correctSound: HTMLAudioElement;
+  private userWords: userWord[];
+  public wrongAnswers: IWord[];
+  public correctAnswers: IWord[];
 
-  constructor() { }
+  constructor(private audioService: AudioService, private api: ApiService) {
+    this.display = new EventEmitter<number>();
+    this.words = this.audioService.words;
+    this.wordsForGame = [];
+    this.index = 0;
+    this.currentWords = [];
+    this.wrongSound = new Audio('assets/mistake.mp3');
+    this.correctSound = new Audio('assets/rigthanswe.mp3');
+    this.wrongAnswers = [];
+    this.correctAnswers = [];
+  }
 
   ngOnInit(): void {
-    this.getWord();
+    this.userWords = this.audioService.userWords;
+    this.getWordsForGame();
+    this.getCurrentWords();
   }
 
-  onKeyUp() {
-    document.addEventListener('keyup', (tup) => {
-      this.keyAnswer = tup.key;
-      // this.checkWord(this.keyAnswer)
-      // console.log(this.fiveWords, 'FIE')
-    })
+  private getIdx(): number {
+    return Math.floor(Math.random() * this.words.length);
   }
 
-  countAnswers() {
-    if(this.countAns === 6) {
-      this.countS.emit(this.countAns);
-      this.rigthAnswerS.emit(this.statisticRightAnswers);
-      this.wrongAnswerS.emit(this.statisticWrongAnswers);
+  public getWordsForGame(): void {
+    for (let i = 0; i < 10; i++) {
+      let word: IWord[] = this.words.splice(this.getIdx(), 1);
+      this.wordsForGame.push(...word);
     }
-    this.countAns++;
+    this.wordsForGame.map(elem => elem.isHidden = false);
   }
 
-  getWord() {
-    setTimeout(() => {
-      this.createBlock(this.wordInstance)
-    }, 1000)
-  }
-
-  createBlock(words: IWord[]) {
-    this.copyWords = [...words];
-    this.copyWords.map(elem => {
-      elem.isHidden = false;
-    })
-
-    this.wordsforToggle = [...this.copyWords];
-    this.sliceArr(this.copyWords)
-  }
-
-  sliceArr(words:IWord[]) {
-    if(this.secondSlice > 21) {
-      this.firstSlice = 0;
-      this.secondSlice = 5;
-      words.sort((a,b) =>{
-        if(a.word < b.word) {
-          return 1;
-        }
-        if(a.word > b.word) {
-          return -1;
-        }
-        return 0;
-      })
-      this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
-      this.firstSlice += 5;
-      this.secondSlice += 5;
-      this.sendFiveWords(this.fiveWords);
-    }
-    else {
-      this.fiveWords = words.slice(this.firstSlice, this.secondSlice);
-      this.fiveWords.map((elem, ind) => {
-        let index:number = ind;
-        index = index + 1;
-        elem.keyId = index;
-      })
-      this.firstSlice += 5;
-      this.secondSlice += 5;
-      this.sendFiveWords(this.fiveWords);
+  public getWrongWords(): void {
+    this.wrongWords = [];
+    for (let i = 0; i < 4; i++) {
+      let word: IWord[] = this.words.splice(this.getIdx(), 1);
+      this.wrongWords.push(...word);
     }
   }
 
-  sendFiveWords(words: IWord[]) {
-    const rightWord = words[Math.floor(Math.random() * 5)];
-    this.currentWord = rightWord;
-    this.wordSound = `https://app-learnwords-rslang.herokuapp.com/${rightWord.audio}`;
-    if(this.count < 7) {
-      this.sound();
-      this.onKeyUp();
-    }
+  public getCurrentWords(): void {
+    this.currentWords = [];
+    this.getWrongWords();
+    this.currentWords.push(this.wordsForGame[this.index], ...this.wrongWords);
+    this.currentWords.sort(() => Math.random() - 0.5);
+    this.sound = new Audio(`https://app-learnwords-rslang.herokuapp.com/${this.wordsForGame[this.index].audio}`);
+    this.sound.play();
+    this.index++;    
   }
 
-
-  toggle(id: string) {
-    this.wordsforToggle.map(word => {
-      if(word.id === id) {
-        word.isHidden = true;
-      }
-    })
+  public answer(word: IWord): void {
+    let userWord = this.userWords.find((word: userWord) => word.wordId === this.wordsForGame[this.index - 1].id);
+    if (word.id === this.wordsForGame[this.index - 1].id) {
+      this.correctAnswers.push(word);
+      this.correctSound.play();
+      if (!userWord) {
+        this.api.createUserWord(localStorage.getItem('userId')!, this.wordsForGame[this.index - 1].id, {difficulty: 'false', optional: {}}).subscribe();
+        this.updateStudiedWords(true);
+      } else if (userWord.difficulty === 'true') {
+        this.api.updateUserWord(localStorage.getItem('userId')!, this.wordsForGame[this.index - 1].id, {difficulty: 'false', optional: {}}).subscribe();
+        this.updateStudiedWords(true);
+      }  
+    } else {
+      this.wrongAnswers.push(word);
+      this.wrongSound.play();
+      if (!userWord) {
+        this.api.createUserWord(localStorage.getItem('userId')!, this.wordsForGame[this.index - 1].id, {difficulty: 'true', optional: {}}).subscribe();
+      } else if (userWord.difficulty === 'false') {
+        this.api.deleteUserWord(localStorage.getItem('userId')!, this.wordsForGame[this.index - 1].id).subscribe();
+        this.updateStudiedWords(false);
+      }  
+    }
+    this.wordsForGame[this.index - 1].isHidden = true;
+    if (this.index < 10) {
+      setTimeout(() => this.getCurrentWords(), 1000);
+    } else {
+      this.audioService.wrongAnswers = this.wrongAnswers;
+      this.audioService.correctAnswers = this.correctAnswers;
+      setTimeout(() => this.display.emit(3), 1000);
+    }
   }
 
   notToKnow() {
-    this.count++;
-    this.toggle(this.currentWord.id)
-    const play = (url: string): void => {
-      this.audioWrongAnswer.src = url;
-      const audio = this.audioWrongAnswer;
-      setTimeout(function () {
-        audio.play();
-      }, 150);
+    let userWord = this.userWords.find((word: userWord) => word.wordId === this.wordsForGame[this.index - 1].id);
+    if (!userWord) {
+      this.api.createUserWord(localStorage.getItem('userId')!, this.wordsForGame[this.index - 1].id, {difficulty: 'true', optional: {}}).subscribe();
+    } else if (userWord.difficulty === 'false') {
+      this.api.deleteUserWord(localStorage.getItem('userId')!, this.wordsForGame[this.index - 1].id).subscribe();
+      this.updateStudiedWords(false);
     }
-    if(this.flagAnswer) {
-      play(this.audioWrongPath)
-    }
-    const changeWords = () => {
-      this.sliceArr(this.copyWords);
-
-    }
-    setTimeout(changeWords, 1000)
-  }
-
-
-  checkWord(wordF?: IWord, key?: any) {
-    this.countAnswers();
-    this.count++
-    const changeWords = () => {
-      this.sliceArr(this.copyWords)
-    }
-    setTimeout(changeWords, 1000);
-    this.wordsforToggle.map(word => {
-      word.isHidden = false;
-    });
-    if(key) {
-      if(wordF?.keyId === key) {
-      }
-    }
-    else {
-      if(wordF?.id) {
-          if ("id" in this.currentWord && wordF?.id === this.currentWord.id) {
-            this.toggle(wordF.id);
-            this.statisticRightAnswers.push(wordF);
-            const play = (url: string): void => {
-              this.audioRightAnswer.src = url;
-              const audio = this.audioRightAnswer;
-              setTimeout(function () {
-                audio.play();
-              }, 150);
-            }
-            if(this.flagAnswer) {
-              play(this.audioRightPath)
-            }
-        }
-        else {
-          this.toggle(this.currentWord.id)
-          this.statisticWrongAnswers.push(wordF);
-          const play = (url: string): void => {
-            this.audioWrongAnswer.src = url;
-            const audio = this.audioWrongAnswer;
-            setTimeout(function () {
-              audio.play();
-            }, 150);
-          }
-          if(this.flagAnswer) {
-            play(this.audioWrongPath)
-          }
-        }
-      }
+    this.wordsForGame[this.index - 1].isHidden = true;
+    if (this.index < 10) {
+      setTimeout(() => this.getCurrentWords(), 1000);
+    } else {
+      this.audioService.wrongAnswers = this.wrongAnswers;
+      this.audioService.correctAnswers = this.correctAnswers;
+      setTimeout(() => this.display.emit(3), 1000);
     }
   }
 
-  sound() {
-    const play = (url: string): void => {
-      this.audio.src = url;
-      const audio = this.audio;
-      setTimeout(function () {
-        audio.play();
-      }, 1000);
-    }
-    if(this.autoplay) {
-      play(this.wordSound);
-    }
+  public playSound() {
+    this.sound.play();
   }
 
+  private updateStudiedWords(add: boolean) {
+    if (add) {
+      localStorage.setItem('studWordsA', `${(+localStorage.getItem('studWordsA')! || 0) + 1}`)
+    } else {
+      localStorage.setItem('studWordsA', `${+localStorage.getItem('studWordsA')! - 1}`)
+    }
+  }
 }

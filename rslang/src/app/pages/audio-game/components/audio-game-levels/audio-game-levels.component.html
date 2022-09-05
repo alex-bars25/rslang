@@ -1,28 +1,30 @@
-<div class="audio-title">
-  <h2 class="title">Аудиовызов</h2>
-  <p class="description"> Вы попали в интерактивную игру "Аудиовызов"<br>
-    Ваша задача выбрать слово из предложенных которое прозвучало.<br>
-    Чтобы продолжить, выберите уровень: </p>
-</div>
-<div class="audio-levels">
-  <ul class="audio-items">
-    <li class="item">
-      <button type="button" class="audio-btn" (click)="getGroup(0)"> Level 1</button>
-    </li>
-    <li class="item">
-      <button type="button" class="audio-btn" (click)="getGroup(1)"> Level 2</button>
-    </li>
-    <li class="item">
-      <button type="button" class="audio-btn" (click)="getGroup(2)"> Level 3</button>
-    </li>
-    <li class="item">
-      <button type="button" class="audio-btn" (click)="getGroup(3)"> Level 4</button>
-    </li>
-    <li class="item">
-      <button type="button" class="audio-btn" (click)="getGroup(4)"> Level 5</button>
-    </li>
-    <li class="item">
-      <button type="button" class="audio-btn" (click)="getGroup(5)"> Level 6</button>
-    </li>
-  </ul>
+<div class="wrapper">
+  <div class="audio-title">
+    <h2 class="title">Аудиовызов</h2>
+    <p class="description">Вы попали в интерактивную игру "Аудиовызов"<br>
+      Ваша задача выбрать слово из предложенных которое прозвучало.<br>
+      Чтобы продолжить, выберите уровень:</p>
+  </div>
+  <div class="audio-levels">
+    <ul class="audio-items">
+      <li class="item">
+        <button type="button" class="audio-btn" (click)="startGame(0)"> Level 1</button>
+      </li>
+      <li class="item">
+        <button type="button" class="audio-btn" (click)="startGame(1)"> Level 2</button>
+      </li>
+      <li class="item">
+        <button type="button" class="audio-btn" (click)="startGame(2)"> Level 3</button>
+      </li>
+      <li class="item">
+        <button type="button" class="audio-btn" (click)="startGame(3)"> Level 4</button>
+      </li>
+      <li class="item">
+        <button type="button" class="audio-btn" (click)="startGame(4)"> Level 5</button>
+      </li>
+      <li class="item">
+        <button type="button" class="audio-btn" (click)="startGame(5)"> Level 6</button>
+      </li>
+    </ul>
+  </div>  
 </div>
