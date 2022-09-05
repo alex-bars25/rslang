@@ -23,8 +23,8 @@ export class StatisticBlockComponent implements OnInit {
   titleToday = 'Сегодня';
   titleGeneral = 'Общая';
   subText = ' из 3600'
-  iconLinkToday = '../../../../../../assets/icon-day.png'
-  iconLinkGeneral = '../../../../../assets/icon-m.png'
+  iconLinkToday = 'assets/icon-day.png'
+  iconLinkGeneral = 'assets/icon-m.png'
   textTittleToday = 'Слов на текущую сессию';
   textTittleGeneral = 'Всего выучено слов'
 

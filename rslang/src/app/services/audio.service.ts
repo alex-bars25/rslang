@@ -8,9 +8,16 @@ import {IWord, userWord} from "../../types";
 
 
 export class AudioService {
-
-  public wordForAudio: IWord[] = [];
-  public level: number;
+  public words: IWord[];
   public userWords: userWord[];
+  public wrongAnswers: IWord[];
+  public correctAnswers: IWord[];
+
+  constructor() {
+    this.words = [];
+    this.userWords = [];
+    this.wrongAnswers = [];
+    this.correctAnswers = [];
+  }
 
 }

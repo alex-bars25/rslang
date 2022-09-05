@@ -138,8 +138,6 @@ export class SprintPlayComponent implements OnInit {
     }
     this.getRandomWord();
     this.getRandomTranslate();
-    console.log(this.words.length);
-
   }
 
   private correctAnswer(): void {

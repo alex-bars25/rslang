@@ -1,27 +1,27 @@
 <div class="audio-play-wrapp">
   <div class="audio-block">
     <div class="sound-btn">
-      <button type="button" class="button-logo" (click)="sound()">
-        <img src="../../../../../assets/Sound-Icon.svg" alt="logo" class="logo-audio">
+      <button type="button" class="button-logo" (click)="playSound()">
+        <img src="assets/Sound-Icon.svg" alt="logo" class="logo-audio">
       </button>
     </div>
-    <div class="answers-btns" *ngIf="fiveWords">
+    <div class="answers-btns">
       <div class="answer-item"
-           *ngFor="let word of fiveWords;
-           index as i"
-           (click)="checkWord(word)"
-           [class.isHidden]="word.isHidden"
+        *ngFor="let word of currentWords;
+        index as i"
+        [class.isHidden]="word.isHidden"
+        (click)="answer(word)"
       >
         <div class="item-number" [attr.data-index]="i + 1">{{i+1}}</div>
         <span class="item-word" >{{word.wordTranslate}}</span>
         <span class="item-block-word"></span>
       </div>
     </div>
-  <div class="follow-btn">
-    <button type="button" (click)="notToKnow()">
-      <span class="btn-follow">Не знаю</span>
-      <span class="btn-block-word"></span>
-    </button>
-  </div>
+    <div class="follow-btn">
+      <button type="button" (click)="notToKnow()">
+        <span class="btn-follow">Не знаю</span>
+        <span class="btn-block-word"></span>
+      </button>
+    </div>
   </div>
 </div>
