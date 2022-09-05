@@ -1,5 +1,5 @@
 .statistick-block {
-  width: 60rem;
+  width: 70%;
   padding: 2rem 2rem 0.5rem;
   border-radius: 20px;
   margin: 3rem auto;
@@ -22,6 +22,9 @@
 
   .main-stat {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 
     .procent-side {
       margin-right: 3rem;
@@ -87,6 +90,15 @@
       }
     }
 
+    @media (max-width: 991px) {
+      .word-wrapper{
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+    }
+
 
   }
 
@@ -94,7 +106,9 @@
     width: 570px;
     margin: 3rem auto;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     .btn-val {
       position: relative;
@@ -106,13 +120,14 @@
     }
   }
 
-}
+  @media (max-width: 1100px) {
+    .result-btns {
+      width: 100%;
+      justify-content: center;
+      gap: 10px;
+    }
+  }
 
-
-@property --p{
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
 }
 
 .pie {
