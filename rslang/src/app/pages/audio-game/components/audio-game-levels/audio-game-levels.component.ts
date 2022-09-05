@@ -29,5 +29,4 @@ export class AudioGameLevelsComponent implements OnInit {
     }
     setTimeout(() => this.display.emit(2), 1000);
   }
-
 }
