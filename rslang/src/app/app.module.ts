@@ -27,7 +27,7 @@ import { StatisticModule } from './pages/statistic/statistic.module';
       HttpClientModule,
       SprintGameModule,
       DictionaryModule,
-      StatisticModule
+      StatisticModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

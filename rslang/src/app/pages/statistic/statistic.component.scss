@@ -7,6 +7,84 @@
   border-radius: 0.3rem;
 }
 
+.block-wrapper {
+  background-color: #ffffffc1;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem ;
+}
+
+.tittle{
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.icon {
+  height: 25px;
+}
+
+.progress {
+  border: 1px solid #B0B0B0;
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 0 3px #B0B0;
+  backdrop-filter: blur(2px) brightness(101%);
+  text-align: center;
+  height: 22px;
+}
+
+.main-tittle{
+  text-align: center;
+}
+
+.bar {
+  background: forestgreen;
+  box-shadow: inset 0px 12px 1.7px #FFFFFF33;
+  border-radius: 3px;
+  color: white;
+  height: 20px;
+  background: dodgerblue;
+  width: 10%;
+}
+
+.value{
+  position: relative;
+  bottom: 20px;
+}
+
+.today{
+  padding: 10px 0;
+
+}
+.today-value{
+  padding: 5px 10px;
+  background-color: rgb(174, 222, 250);
+  border-radius: 3rem;
+}
+
+.cards{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card{
+  width: 250px;
+  height: 220px;
+  border-radius: 1rem;
+  background-color: rgba(187, 225, 251, 0.369);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 @media (max-width: 1280px) {
   .main-wrapper {
     width: 900px;
@@ -39,4 +117,52 @@
 
 .wrapper {
   width: 100%;
+}
+
+.pie {
+  --p:20;
+  --b:22px;
+  --c:darkred;
+  --w:150px;
+
+  width:var(--w);
+  aspect-ratio:1;
+  position:relative;
+  display:inline-grid;
+  margin:5px;
+  place-content:center;
+  font-size:25px;
+  font-weight:bold;
+  font-family:sans-serif;
+}
+.pie:before,
+.pie:after {
+  content:"";
+  position:absolute;
+  border-radius:50%;
+}
+.pie:before {
+  inset:0;
+  background:
+    radial-gradient(farthest-side,var(--c) 98%,#0000) top/var(--b) var(--b) no-repeat,
+    conic-gradient(var(--c) calc(var(--p)*1%),rgba(0, 0, 0, 0.048) 0);
+  -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+  mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+}
+.pie:after {
+  inset:calc(50% - var(--b)/2);
+  background:var(--c);
+  transform:rotate(calc(var(--p)*3.6deg)) translateY(calc(50% - var(--w)/2));
+}
+.animate {
+  animation:p 1s .5s both;
+}
+.no-round:before {
+  background-size:0 0,auto;
+}
+.no-round:after {
+  content:none;
+}
+@keyframes p {
+  from{--p:0}
 }
