@@ -1,5 +1,5 @@
 .wrapper {
-  width: 60rem;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -16,6 +16,14 @@
     color: #212529;
     opacity: .9;
     letter-spacing: 13px;
+  }
+
+  @media (max-width: 690px) {
+
+    .title {
+      font-size: 1.5rem;
+      letter-spacing: 5px;
+    }
   }
 
   .description {
@@ -93,3 +101,10 @@ ul {
   100% { color: #ddd; text-shadow: 0px -1px 0px #000; }
 }
 
+
+@media (max-width: 991px) {
+  .audio-btn {
+    width: 100%;
+  }
+
+}
