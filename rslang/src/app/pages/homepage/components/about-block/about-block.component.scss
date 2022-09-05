@@ -7,7 +7,7 @@
 }
 
 .about-card-left {
-  height: 100px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,7 +21,7 @@
 }
 
 .about-card-right {
-  height: 100px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,6 +81,15 @@ p {
 .about-card-right:hover {
   .img-wrapper{
   box-shadow: 0 0 10px 3px rgba(82, 82, 85, 0.906);
+  }
+  .igor{ 
+    background-image: url("../../../../../assets/IgorPhoto.jpg") !important;
+  }
+  .ivan{ 
+    background-image: url("../../../../../assets/IvanPhoto.jpg") !important;
+  }
+  .alex{ 
+    background-image: url("../../../../../assets/AlexPhoto.jpg") !important;
   }
 }
 

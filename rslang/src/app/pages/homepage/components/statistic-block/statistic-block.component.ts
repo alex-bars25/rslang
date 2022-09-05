@@ -12,7 +12,6 @@ export class StatisticBlockComponent implements OnInit {
 
   constructor(private api: ApiService, private router: Router) { }
 
-
   userId: string = localStorage.getItem('userId')!;
 
   valueWordsToday: string = '0';
@@ -25,7 +24,7 @@ export class StatisticBlockComponent implements OnInit {
   subText = ' из 3600'
   iconLinkToday = 'assets/icon-day.png'
   iconLinkGeneral = 'assets/icon-m.png'
-  textTittleToday = 'Слов на текущую сессию';
+  textTittleToday = 'Выучено за текущую сессию';
   textTittleGeneral = 'Всего выучено слов'
 
   public goToStatisticPage() {
