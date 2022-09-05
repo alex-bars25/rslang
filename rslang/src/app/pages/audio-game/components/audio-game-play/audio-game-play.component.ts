@@ -14,7 +14,7 @@ export class AudioGamePlayComponent implements OnInit {
 
   @HostListener('document: keyup', ['$event.key'])
   onKeyUp(key: number) {
-    if (key > 0 && key < 6) {     
+    if (key > 0 && key < 6 && !this.disabled) {     
       this.answer(this.currentWords[key-1]);
     }
   }
@@ -30,6 +30,7 @@ export class AudioGamePlayComponent implements OnInit {
   private userWords: userWord[];
   public wrongAnswers: IWord[];
   public correctAnswers: IWord[];
+  public disabled: boolean;
 
   constructor(private audioService: AudioService, private api: ApiService) {
     this.display = new EventEmitter<number>();
@@ -41,6 +42,7 @@ export class AudioGamePlayComponent implements OnInit {
     this.correctSound = new Audio('assets/rigthanswe.mp3');
     this.wrongAnswers = [];
     this.correctAnswers = [];
+    this.disabled = false;
   }
 
   ngOnInit(): void {
@@ -80,6 +82,7 @@ export class AudioGamePlayComponent implements OnInit {
   }
 
   public answer(word: IWord): void {
+    this.disabled = true;
     let userWord = this.userWords.find((word: userWord) => word.wordId === this.wordsForGame[this.index - 1].id);
     if (word.id === this.wordsForGame[this.index - 1].id) {
       this.correctAnswers.push(word);
@@ -109,6 +112,7 @@ export class AudioGamePlayComponent implements OnInit {
       this.audioService.correctAnswers = this.correctAnswers;
       setTimeout(() => this.display.emit(3), 1000);
     }
+    setTimeout(() => this.disabled = false, 1000);
   }
 
   notToKnow() {
