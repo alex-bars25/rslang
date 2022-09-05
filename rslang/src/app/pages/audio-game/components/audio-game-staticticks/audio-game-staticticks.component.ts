@@ -16,6 +16,7 @@ export class AudioGameStaticticksComponent implements OnInit {
   public logoRepeat: string = "assets/repeat-log.svg";
   public logoFinish: string = "assets/fin.svg"
   public pageFinish: string = '/home';
+  public pageStart: string = '/audio_game';
   public lengthProcent:number;
   public wrongAnswers: IWord[];
   public rightAnswers: IWord[];

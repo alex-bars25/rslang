@@ -6,16 +6,17 @@
       </button>
     </div>
     <div class="answers-btns">
-      <div class="answer-item"
+      <button class="answer-item"
         *ngFor="let word of currentWords;
         index as i"
         [class.isHidden]="word.isHidden"
         (click)="answer(word)"
+        [disabled]="disabled"
       >
-        <div class="item-number" [attr.data-index]="i + 1">{{i+1}}</div>
+        <span class="item-number">{{i+1}}</span>
         <span class="item-word" >{{word.wordTranslate}}</span>
         <span class="item-block-word"></span>
-      </div>
+      </button>
     </div>
     <div class="follow-btn">
       <button type="button" (click)="notToKnow()">
