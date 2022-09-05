@@ -47,7 +47,7 @@ export class AudioGameStaticticksComponent implements OnInit {
   }
 
   private updateWrongAnwers() {
-    localStorage.setItem('falseAnwersA', `${(+localStorage.getItem('falseAnswersA')! || 0) + this.wrongAnswers.length}`)
+    localStorage.setItem('falseAnswersA', `${(+localStorage.getItem('falseAnswersA')! || 0) + this.wrongAnswers.length}`)
   }
   private updateCorrectAnswers() {
     localStorage.setItem('trueAnswersA', `${(+localStorage.getItem('trueAnswersA')! || 0) + this.rightAnswers.length}`);
