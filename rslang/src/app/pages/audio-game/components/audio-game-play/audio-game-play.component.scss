@@ -44,6 +44,12 @@
       position: relative;
     }
 
+    @media (max-width: 1180px) {
+      .answer-item {
+        margin-right: 0;
+      }
+    }
+
     .answer-item:hover {
       background: rgba(77, 238, 230, 0.87);
       transition: all ease 0.4s;
